@@ -1,0 +1,251 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2011 by Michael Ummels <michael.ummels@rwth-aachen.de>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Michael Ummels.
+%
+% This work consists of the files ccicons.dtx, ccicons.ins,
+% ccicons.map, ccicons.pfb, ccicons.tfm, ccicons-u.enc and
+% the derived files ccicons.sty and uccicons.fd.
+%
+% The files ccicons.pfb and ccicons.tfm have been
+% generated from the file cc-icons-svg.zip available from
+% http://mirrors.creativecommons.org/presskit/icons/cc-icons-svg.zip
+% and released by Creative Commons (http://creativecommons.org) under a
+% Creative Commons Attribution 3.0 Unported license
+% (http://creativecommons.org/licenses/by/3.0/).
+%
+% \fi
+%
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{ccicons}[2009/12/14 v1.1 LaTeX support for Creative Commons icons]
+%<fontdef>\ProvidesFile{uccicons.fd}[2009/12/14 v1.1 font definitions for U/ccicons]
+%
+%<*driver>
+\documentclass{ltxdoc}
+
+\usepackage{ccicons}
+\usepackage{longtable}
+
+\newcommand{\pkg}[1]{\textsf{#1}}
+\newcommand{\url}[1]{\mbox{\texttt{#1}}}
+
+\EnableCrossrefs         
+\CodelineIndex
+\RecordChanges
+
+\begin{document}
+\DocInput{ccicons.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{ccicons.sty}
+%
+% \DoNotIndex{\newcommand}
+% 
+% \title{The \pkg{ccicons} package\thanks{This document
+%   corresponds to \pkg{ccicons}~\fileversion, dated \filedate.}}
+% \author{Michael Ummels \\ \texttt{michael.ummels@rwth-aachen.de}}
+% \date{}
+%
+% \maketitle
+%
+% \begin{abstract}
+% \noindent
+% This package offers authors who want to publish their documents under a
+% Creative Commons license an easy way to include the relevant icons
+% in their documents.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+% Creative Commons (\url{http://creativecommons.org}) licenses have become
+% increasingly popular for authors who want to retain their copyright but give
+% other people the possibility to share and build upon their work. For each
+% of the licenses that Creative Commons offers, there exists a set of icons
+% that can be used to identify the respective license. This package defines
+% several commands that allow to typeset these icons. Since the icons are
+% stored in a PostScript Type 1 font, they can be scaled freely without
+% diminishing their visual appearance.
+%
+% \section{Usage}
+%
+% To use this package in your \LaTeX document, you need to issue
+% \begin{quote}
+% |\usepackage{ccicons}|
+% \end{quote}
+% in the preamble of your document. This makes available the following
+% commands to typeset the icons provided by Creative Commons:
+%
+% \newcommand{\typesetcc}[1]%
+%  {#1\,{\large #1}\,{\Large #1}\,{\LARGE #1}\,{\huge #1}\,{\Huge #1}}
+% \medskip\noindent
+% \begin{longtable}[l]{ll}
+%   |\ccLogo| & \typesetcc{\ccLogo} \\
+%   |\ccAttribution| & \typesetcc{\ccAttribution} \\
+%   |\ccShareAlike| & \typesetcc{\ccShareAlike} \\
+%   |\ccNoDerivatives| & \typesetcc{\ccNoDerivatives} \\
+%   |\ccNonCommercial| & \typesetcc{\ccNonCommercial} \\
+%   |\ccNonCommercialEU| & \typesetcc{\ccNonCommercialEU} \\
+%   |\ccNonCommercialJP| & \typesetcc{\ccNonCommercialJP} \\
+%   |\ccZero| & \typesetcc{\ccZero} \\
+%   |\ccPublicDomain| & \typesetcc{\ccPublicDomain} \\
+%   |\ccSampling| & \typesetcc{\ccSampling} \\
+%   |\ccShare| & \typesetcc{\ccShare} \\
+%   |\ccRemix| & \typesetcc{\ccRemix}
+% \end{longtable}
+%
+% \bigskip\noindent
+% Additionally, for each of the common Creative Commons licenses there is a
+% command to typeset the CC logo together with the icons applicable for that
+% license (see \url{http://creativecommons.org/licenses}):
+%
+% \medskip\noindent
+% \begin{tabular}{ll}
+%  |\ccby| & \ccby \\
+%  |\ccbysa| & \ccbysa \\
+%  |\ccbynd| & \ccbynd \\
+%  |\ccbync| & \ccbync \\
+%  |\ccbynceu| & \ccbynceu \\
+%  |\ccbyncjp| & \ccbyncjp \\
+%  |\ccbyncsa| & \ccbyncsa \\
+%  |\ccbyncsaeu| & \ccbyncsaeu \\
+%  |\ccbyncsajp| & \ccbyncsajp \\
+%  |\ccbyncnd| & \ccbyncnd \\
+%  |\ccbyncndeu| & \ccbyncndeu \\
+%  |\ccbyncndjp| & \ccbyncndjp \\
+%  |\cczero| & \cczero \\
+%  |\ccpd| & \ccpd
+% \end{tabular}
+%
+% \bigskip\noindent
+% Please note that all icons that can be typeset using this package are
+% trademarks of Creative Commons and are subject to the Creative Commons
+% trademark policy (see \url{http://creativecommons.org/policies}).
+%
+% \section{Version history}
+%
+% Version 1.0 (2009/11/29): Initial version \\
+% Version 1.1 (2009/12/14): New font with additional glyphs
+%
+% \StopEventually{}
+%
+% \iffalse
+%<*package>
+% \fi
+%
+% \section{The main style file}
+%
+% We provide one internal command to access the characters of the font
+% directly.
+%    \begin{macrocode}
+\newcommand{\ccicons@char}[1]{{\usefont{U}{ccicons}{m}{n}\char#1}}
+%    \end{macrocode}
+%
+% The following commands provide high-level access to to the font. We
+% define a command for each character in the font.
+%    \begin{macrocode}
+\newcommand{\ccLogo}{\ccicons@char{0}}
+\newcommand{\ccAttribution}{\ccicons@char{1}}
+\newcommand{\ccShareAlike}{\ccicons@char{2}}
+\newcommand{\ccNoDerivatives}{\ccicons@char{3}}
+\newcommand{\ccNonCommercial}{\ccicons@char{4}}
+\newcommand{\ccNonCommercialEU}{\ccicons@char{5}}
+\newcommand{\ccNonCommercialJP}{\ccicons@char{6}}
+\newcommand{\ccPublicDomain}{\ccicons@char{7}}
+\newcommand{\ccZero}{\ccicons@char{8}}
+\newcommand{\ccSampling}{\ccicons@char{9}}
+\newcommand{\ccShare}{\ccicons@char{10}}
+\newcommand{\ccRemix}{\ccicons@char{11}}
+%    \end{macrocode}
+%
+% Finally, for each CC license we define a command that prints the CC logo
+% together with the icons applicable for that license.
+%    \begin{macrocode}
+\newcommand{\ccby}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution}}
+\newcommand{\ccbysa}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccShareAlike}}
+\newcommand{\ccbynd}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNoDerivatives}}
+\newcommand{\ccbync}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercial}}
+\newcommand{\ccbynceu}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialEU}}
+\newcommand{\ccbyncjp}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialJP}}
+\newcommand{\ccbyncsa}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercial%
+  \kern0.1em\ccShareAlike}}
+\newcommand{\ccbyncsaeu}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialEU%
+  \kern0.1em\ccShareAlike}}
+\newcommand{\ccbyncsajp}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialJP%
+  \kern0.1em\ccShareAlike}}
+\newcommand{\ccbyncnd}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercial%
+  \kern0.1em\ccNoDerivatives}}
+\newcommand{\ccbyncndeu}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialEU%
+  \kern0.1em\ccNoDerivatives}}
+\newcommand{\ccbyncndjp}%
+  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialJP%
+  \kern0.1em\ccNoDerivatives}}
+\newcommand{\cczero}%
+  {\mbox{\ccLogo\kern0.1em\ccZero}}
+\newcommand{\ccpd}%
+  {\mbox{\ccLogo\kern0.1em\ccPublicDomain}}
+%    \end{macrocode}
+%
+% \iffalse
+%</package>
+%<*fontdef>
+% \fi
+%
+% \section{The font definitions file}
+%
+% We just need to declare one family with one shape.
+%    \begin{macrocode}
+\DeclareFontFamily{U}{ccicons}{}
+\DeclareFontShape{U}{ccicons}{m}{n}{
+   <-> ccicons
+}{}
+%    \end{macrocode}
+%
+% \iffalse
+%</fontdef>
+% \fi
+%
+% \CheckSum{160}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \Finale
+\endinput

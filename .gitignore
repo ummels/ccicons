@@ -1,0 +1,15 @@
+.DS_Store
+*.bak
+*.old
+*.tmp
+*.log
+*.aux
+*.out
+*.toc
+*.glo
+*.idx
+*.sty
+*.fd
+*.tmproj
+*.tfm
+ccicons.tar.gz
