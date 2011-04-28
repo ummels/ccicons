@@ -9,7 +9,7 @@ SRCFILES = $(PKG).ins $(PKG).dtx
 GENFILES = $(PKG).tfm
 TEXFILES = $(PKG).sty u$(PKG).fd
 TEMPFILES = $(PKG).aux $(PKG).log $(PKG).idx $(PKG).ilg $(PKG).ind $(PKG).glo $(PKG).gls
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
+TEXMFDIR = $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 .PHONY: all metrics package doc ctan install clean
 
@@ -51,7 +51,7 @@ $(PKG).tar.gz: all doc $(INSTFILES)
 	cp $(PKG).tfm ctan/fonts/tfm/public/$(PKG)
 	cp $(PKG).pfb ctan/fonts/type1/public/$(PKG)
 	cp $(TEXFILES) ctan/tex/latex/$(PKG)
-	cp $(PKG).ins $(PKG).dtx ctan/source/latex/$(PKG)
+	cp $(SRCFILES) ctan/source/latex/$(PKG)
 	cd ctan && zip -r $(PKG).tds.zip doc fonts tex source
 	cd ctan && rm -rf doc fonts tex source
 	(cd ctan && tar -c *) | gzip - > $(PKG).tar.gz
