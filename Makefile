@@ -4,16 +4,15 @@ INSTALL = install
 INSTALLDATA = install -m 644
 
 PKG = ccicons
-INSTFILES = $(PKG).pfb $(PKG)-u.enc $(PKG).map README.ctan
+INSTFILES = $(PKG).pfb $(PKG).tfm $(PKG)-u.enc $(PKG).map README.ctan $(PKG).pdf
 SRCFILES = $(PKG).ins $(PKG).dtx
-GENFILES = $(PKG).tfm
 TEXFILES = $(PKG).sty u$(PKG).fd
 TEMPFILES = $(PKG).aux $(PKG).log $(PKG).idx $(PKG).ilg $(PKG).ind $(PKG).glo $(PKG).gls
 TEXMFDIR = $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 .PHONY: all metrics package doc ctan install clean
 
-all: metrics package
+all: package
 
 metrics: $(PKG).tfm
 
@@ -35,9 +34,9 @@ $(PKG).pdf: $(PKG).dtx
 	  $(LATEX) $(PKG).dtx; \
 	done
 
-$(PKG).tar.gz: all doc $(INSTFILES)
+$(PKG).tar.gz: all $(INSTFILES)
 	mkdir -p ctan/$(PKG)
-	cp $(SRCFILES) $(INSTFILES) $(GENFILES) ctan/$(PKG)
+	cp $(SRCFILES) $(INSTFILES) ctan/$(PKG)
 	mkdir -p ctan/doc/latex/$(PKG)
 	mkdir -p ctan/fonts/enc/dvips/$(PKG)
 	mkdir -p ctan/fonts/map/dvips/$(PKG)
@@ -58,7 +57,7 @@ $(PKG).tar.gz: all doc $(INSTFILES)
 	cd ctan/$(PKG) && mv README.ctan README
 	rm -rf ctan
 
-install: all doc $(INSTFILES)
+install: all $(INSTFILES)
 	$(INSTALL) -d $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
 	$(INSTALL) $(PKG)-u.enc $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
 	$(INSTALL) -d $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
@@ -73,4 +72,4 @@ install: all doc $(INSTFILES)
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
 
 clean:
-	$(RM) $(TEMPFILES) $(GENFILES) $(TEXFILES) $(PKG).tar.gz
+	rm -f $(TEMPFILES) $(TEXFILES) $(PKG).tar.gz

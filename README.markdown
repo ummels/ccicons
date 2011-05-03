@@ -10,8 +10,8 @@ in their documents.
 Installation
 ------------
 
-Building the TeX font metrics requires afm2tfm. To install the fonts, the
-accompanying LaTeX package and the documentation in your home texmf tree, run:
+To install the fonts, the accompanying LaTeX package and the documentation in
+your home texmf tree, run:
 
     make install
 
