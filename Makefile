@@ -10,7 +10,7 @@ TEXFILES = $(PKG).sty u$(PKG).fd
 TEMPFILES = $(PKG).aux $(PKG).log $(PKG).idx $(PKG).ilg $(PKG).ind $(PKG).glo $(PKG).gls
 TEXMFDIR = $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
-.PHONY: all metrics package doc ctan install clean
+.PHONY: all metrics package doc ctan install uninstall clean
 
 all: package
 
@@ -70,6 +70,14 @@ install: all $(INSTFILES)
 	$(INSTALLDATA) $(TEXFILES) $(TEXMFDIR)/tex/latex/$(PKG)
 	$(INSTALL) -d $(TEXMFDIR)/doc/latex/fdsymbol
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
+
+uninstall:
+	rm -rf $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
+	rm -rf $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
+	rm -rf $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
+	rm -rf $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
+	rm -rf $(TEXMFDIR)/tex/latex/$(PKG)
+	rm -rf $(TEXMFDIR)/doc/latex/fdsymbol
 
 clean:
 	rm -f $(TEMPFILES) $(TEXFILES) $(PKG).tar.gz
