@@ -69,7 +69,7 @@ install: all $(INSTFILES)
 	$(INSTALLDATA) $(PKG).pfb $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
 	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(PKG)
 	$(INSTALLDATA) $(TEXFILES) $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/fdsymbol
+	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(PKG)
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
 
 uninstall:
@@ -78,7 +78,7 @@ uninstall:
 	rm -rf $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
 	rm -rf $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
 	rm -rf $(TEXMFDIR)/tex/latex/$(PKG)
-	rm -rf $(TEXMFDIR)/doc/latex/fdsymbol
+	rm -rf $(TEXMFDIR)/doc/latex/$(PKG)
 
 clean:
 	rm -f $(TEMPFILES) $(TEXFILES) $(PKG).tar.gz
