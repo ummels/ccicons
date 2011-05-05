@@ -1,14 +1,15 @@
 LATEX = pdflatex
 AFMTOTFM = afm2tfm
 INSTALL = install
-INSTALLDATA = install -m 644
+INSTALLDIR = $(INSTALL) -d
+INSTALLDATA = $(INSTALL) -m 644
 
-PKG = ccicons
-INSTFILES = $(PKG).pfb $(PKG).tfm $(PKG)-u.enc $(PKG).map README.ctan $(PKG).pdf
-SRCFILES = $(PKG).ins $(PKG).dtx
-TEXFILES = $(PKG).sty u$(PKG).fd
-TEMPFILES = $(PKG).aux $(PKG).log $(PKG).idx $(PKG).ilg $(PKG).ind $(PKG).glo $(PKG).gls
-TEXMFDIR = $(shell kpsewhich -expand-var='$$TEXMFHOME')
+PKG := ccicons
+INSTFILES := $(PKG).pfb $(PKG).tfm $(PKG)-u.enc $(PKG).map README.ctan $(PKG).pdf
+SRCFILES := $(PKG).ins $(PKG).dtx
+TEXFILES := $(PKG).sty u$(PKG).fd
+TEMPFILES := $(PKG).aux $(PKG).log $(PKG).idx $(PKG).ilg $(PKG).ind $(PKG).glo $(PKG).gls
+TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 .PHONY: all metrics package doc ctan install uninstall clean
 
@@ -58,17 +59,17 @@ $(PKG).tar.gz: all $(INSTFILES)
 	rm -rf ctan
 
 install: all $(INSTFILES)
-	$(INSTALL) -d $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
-	$(INSTALL) $(PKG)-u.enc $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
-	$(INSTALL) $(PKG).map $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
-	$(INSTALL) $(PKG).tfm $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
-	$(INSTALL) $(PKG).pfb $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/tex/latex/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
+	$(INSTALLDATA) $(PKG)-u.enc $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
+	$(INSTALLDATA) $(PKG).map $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
+	$(INSTALLDATA) $(PKG).tfm $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
+	$(INSTALLDATA) $(PKG).pfb $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(PKG)
 	$(INSTALLDATA) $(TEXFILES) $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/doc/latex/fdsymbol
+	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/fdsymbol
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
 
 uninstall:
