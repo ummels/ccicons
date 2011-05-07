@@ -54,8 +54,8 @@ $(PKG).tar.gz: all $(INSTFILES)
 	cp $(SRCFILES) ctan/source/latex/$(PKG)
 	cd ctan && zip -r $(PKG).tds.zip doc fonts tex source
 	cd ctan && rm -rf doc fonts tex source
-	(cd ctan && tar -c *) | gzip - > $(PKG).tar.gz
 	cd ctan/$(PKG) && mv README.ctan README
+	(cd ctan && tar -c *) | gzip - > $(PKG).tar.gz
 	rm -rf ctan
 
 install: all $(INSTFILES)
