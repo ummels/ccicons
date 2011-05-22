@@ -10,5 +10,8 @@
 *.idx
 *.sty
 *.fd
+*.afm
+*.tfm
+*.pfb
 *.tmproj
 ccicons.tar.gz
