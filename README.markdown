@@ -10,6 +10,9 @@ in their documents.
 Installation
 ------------
 
+Building the Type 1 fonts and the TeX font metrics requires fontforge
+and afm2tfm.
+
 To install the fonts, the accompanying LaTeX package and the documentation in
 your home texmf tree, run:
 
