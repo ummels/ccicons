@@ -10,7 +10,7 @@ in their documents.
 Installation
 ------------
 
-1. Run `latex ccicons.ins` to produce the style file and the font
+1. Run `latex ccicons.ins` to generate the LaTex package and the font
    definition file.
 
 2. Create the following directories in a local TeX tree:
