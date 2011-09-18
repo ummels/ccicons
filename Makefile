@@ -3,9 +3,7 @@ PDFLATEX := pdflatex
 FONTFORGE := fontforge
 AFMTOTFM := afm2tfm
 RM := rm -rf
-MV := mv
 TAR := tar
-GZIP := gzip
 ZIP := zip
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
@@ -66,9 +64,9 @@ $(pkg).pdf: $(pkg).dtx
 tds: $(pkg).tds.zip
 
 $(pkg).tds.zip: $(files) $(genfiles) $(pkg).sty $(pkg).pdf
-	$(MAKE) install TEXMFDIR:=ctan.tmp
-	(cd ctan.tmp && $(ZIP) -r - doc fonts tex) > $@
-	$(RM) ctan.tmp
+	$(MAKE) install TEXMFDIR:=tds.tmp
+	(cd tds.tmp && $(ZIP) -r - *) > $@
+	$(RM) tds.tmp
 
 # rules for building a tarball for CTAN
 
