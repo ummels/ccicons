@@ -1,94 +1,119 @@
-LATEX = pdflatex
-FONTFORGE = fontforge
-AFMTOTFM = afm2tfm
-INSTALL = install
-INSTALLDIR = $(INSTALL) -d
-INSTALLDATA = $(INSTALL) -m 644
+SHEL := /bin/sh
+PDFLATEX := pdflatex
+FONTFORGE := fontforge
+AFMTOTFM := afm2tfm
+RM := rm -rf
+MV := mv
+TAR := tar
+GZIP := gzip
+ZIP := zip
+INSTALL := install
+INSTALLDIR := $(INSTALL) -d
+INSTALLDATA := $(INSTALL) -m 644
 
-PKG := ccicons
-INSTFILES := $(PKG)-u.enc $(PKG).map README.ctan $(PKG).pdf
-GENFILES := $(PKG).pfb $(PKG).afm $(PKG).tfm
-SRCFILES := $(PKG).ins $(PKG).dtx
-TEXFILES := $(PKG).sty u$(PKG).fd
-TEMPFILES := $(PKG).aux $(PKG).log $(PKG).idx $(PKG).ilg $(PKG).ind $(PKG).glo $(PKG).gls
+ifneq (,$(findstring install,$(MAKECMDGOALS)))
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
+endif
 
-.PHONY: all type1 metrics package doc ctan install uninstall clean
+pkg := ccicons
+files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf
+genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm
+tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out
 
-all: package type1 metrics
+# default rule
 
-type1: $(PKG).pfb
+.PHONY: all
+all: type1 metrics latex
 
-metrics: $(PKG).afm $(PKG).tfm
+# rules for building the Postscript font
 
-package: $(TEXFILES)
+.PHONY: type1
+type1: $(pkg).pfb
 
-doc: $(PKG).pdf
+$(pkg).pfb $(pkg).afm: $(pkg).sfd
+	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).pfb"); Quit(0)'
 
-ctan: $(PKG).tar.gz
+# rules for building the TeX font metrics
 
-$(PKG).pfb $(PKG).afm: $(PKG).sfd
-	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(PKG).pfb"); Quit(0)'
+.PHONY: metrics
+metrics: $(pkg).tfm
 
-$(PKG).tfm: $(PKG).afm
-	$(AFMTOTFM) $(PKG).afm
+$(pkg).tfm: $(pkg).afm
+	$(AFMTOTFM) $(pkg).afm
 
-$(TEXFILES): $(SRCFILES)
-	rm -f $(TEXFILES)
-	$(LATEX) $(PKG).ins
+# rules for building the LaTeX package
 
-$(PKG).pdf: $(PKG).dtx
-	$(LATEX) $(PKG).dtx
-	while grep -s 'Rerun to get' $(PKG).log; do \
-	  $(LATEX) $(PKG).dtx; \
+.PHONY: latex
+latex: $(pkg).sty
+
+$(pkg).sty: $(pkg).ins $(pkg).dtx
+	$(PDFLATEX) $(pkg).ins
+
+# rules for building the PDF documentation
+
+.PHONY: doc
+doc: $(pkg).pdf
+
+$(pkg).pdf: $(pkg).dtx
+	$(PDFLATEX) $(pkg).dtx
+	while grep -s 'Rerun to get' $(pkg).log; do \
+	  $(PDFLATEX) $(pkg).dtx; \
 	done
 
-$(PKG).tar.gz: all $(INSTFILES)
-	mkdir -p ctan
-	cp $(SRCFILES) $(INSTFILES) $(GENFILES) ctan
-	mkdir -p ctan/doc/latex/$(PKG)
-	mkdir -p ctan/fonts/enc/dvips/$(PKG)
-	mkdir -p ctan/fonts/map/dvips/$(PKG)
-	mkdir -p ctan/fonts/afm/public/$(PKG)
-	mkdir -p ctan/fonts/tfm/public/$(PKG)
-	mkdir -p ctan/fonts/type1/public/$(PKG)
-	mkdir -p ctan/tex/latex/$(PKG)
-	mkdir -p ctan/source/latex/$(PKG)
-	cp $(PKG).pdf ctan/doc/latex/$(PKG)
-	cp $(PKG)-u.enc ctan/fonts/enc/dvips/$(PKG)
-	cp $(PKG).map ctan/fonts/map/dvips/$(PKG)
-	cp $(PKG).afm ctan/fonts/afm/public/$(PKG)
-	cp $(PKG).tfm ctan/fonts/tfm/public/$(PKG)
-	cp $(PKG).pfb ctan/fonts/type1/public/$(PKG)
-	cp $(TEXFILES) ctan/tex/latex/$(PKG)
-	cp $(SRCFILES) ctan/source/latex/$(PKG)
-	cd ctan && zip -r $(PKG).tds.zip doc fonts tex source
-	cd ctan && rm -rf doc fonts tex source
-	cd ctan && mv README.ctan README
-	(cd ctan && tar -c *) | gzip - > $(PKG).tar.gz
-	rm -rf ctan
+# rules for building a TDS zip file
 
-install: all $(INSTFILES)
-	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
-	$(INSTALLDATA) $(PKG)-u.enc $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
-	$(INSTALLDATA) $(PKG).map $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
-	$(INSTALLDATA) $(PKG).tfm $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
-	$(INSTALLDATA) $(PKG).pfb $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALLDATA) $(TEXFILES) $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(PKG)
-	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
+.PHONY: tds
+tds: $(pkg).tds.zip
 
+$(pkg).tds.zip: $(files) $(genfiles) $(pkg).sty $(pkg).pdf
+	$(MAKE) install TEXMFDIR:=ctan.tmp
+	(cd ctan.tmp && $(ZIP) -r - doc fonts tex) > $@
+	$(RM) ctan.tmp
+
+# rules for building a tarball for CTAN
+
+.PHONY: ctan
+ctan: $(pkg).tar.gz
+
+$(pkg).tar.gz: $(pkg).tds.zip $(files) $(genfiles) $(pkg).pdf README.ctan
+	$(TAR) -cz -s '/README\.ctan/README/' $^ > $@
+
+# rules for (un)installing everything
+
+.PHONY: install
+install: all
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
+	$(INSTALLDATA) $(pkg)-u.enc $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	$(INSTALLDATA) $(pkg).map $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(INSTALLDATA) $(pkg).tfm $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(INSTALLDATA) $(pkg).pfb $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(pkg)
+	$(INSTALLDATA) $(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDATA) $(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/source/latex/$(pkg)
+	$(INSTALLDATA) $(pkg).ins $(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
+
+.PHONY: uninstall
 uninstall:
-	rm -rf $(TEXMFDIR)/tex/fonts/enc/dvips/$(PKG)
-	rm -rf $(TEXMFDIR)/tex/fonts/map/dvips/$(PKG)
-	rm -rf $(TEXMFDIR)/tex/fonts/tfm/public/$(PKG)
-	rm -rf $(TEXMFDIR)/tex/fonts/type1/public/$(PKG)
-	rm -rf $(TEXMFDIR)/tex/latex/$(PKG)
-	rm -rf $(TEXMFDIR)/doc/latex/$(PKG)
+	$(RM) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(RM) $(TEXMFDIR)/tex/latex/$(pkg)
+	$(RM) $(TEXMFDIR)/doc/latex/$(pkg)
+	$(RM) $(TEXMFDIR)/source/latex/$(pkg)
 
+# rule for cleaning the source tree
+
+.PHONY: clean
 clean:
-	rm -f $(GENFILES) $(TEXFILES) $(TEMPFILES) $(PKG).tar.gz
+	$(RM) $(genfiles) $(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
+	$(RM) $(tempfiles)
+
+# delete files on error
+
+.DELETE_ON_ERROR:
