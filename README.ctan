@@ -7,13 +7,22 @@ in their documents.
 
 [CC]: http://creativecommons.org
 
+Usage
+-----
+
+To use package, include
+
+    \usepackage{ccicons}
+
+in the preamble of your LaTeX document. See the PDF documentation for
+the details.
+
 Installation
 ------------
 
-1. Run `latex ccicons.ins` to generate the LaTex package and the font
-   definition file.
+1. Run `latex ccicons.ins` to generate the LaTex package.
 
-2. Create the following directories in a local TeX tree:
+2. Create the following directories in a local texmf tree:
 
    - doc/latex/ccicons
    - fonts/enc/dvips/ccicons
@@ -22,26 +31,24 @@ Installation
    - fonts/type1/public/ccicons
    - tex/latex/ccicons
 
-3. Copy all relevant files into the TeX tree:
+3. Copy all relevant files into the texmf tree:
 
-   - ccicons.pdf goes into doc/latex/ccicons
-   - ccicons-u.enc goes into fonts/enc/dvips/ccicons
-   - ccicons.map goes into fonts/map/dvips/ccicons
-   - ccicons.tfm goes into fonts/tfm/public/ccicons
-   - ccicons.pfb goes into fonts/type1/public/ccicons
-   - ccicons.sty and uccicons.fd go into tex/latex/ccicons
+   - ccicons.pdf goes to doc/latex/ccicons
+   - ccicons-u.enc goes to fonts/enc/dvips/ccicons
+   - ccicons.map goes to fonts/map/dvips/ccicons
+   - ccicons.tfm goes to fonts/tfm/public/ccicons
+   - ccicons.pfb goes to fonts/type1/public/ccicons
+   - ccicons.sty goes to tex/latex/ccicons
 
-4. Update the file database by running `mktexlsr'.
+4. Afterwards, you may need to regenerate the file database:
 
-5. Activate the map file by running
+    texhash
+
+5. Finally, activate the map file by running
 
     updmap --enable Map ccicons.map
 
-   (for a system-wide installation use updmap-sys).
-
-6. See the file `ccicons.pdf` for how to use this package.
-
-7. Happy TeXing!
+For a system-wide installation, replace updmap by updmap-sys.
 
 License
 -------
@@ -64,9 +71,8 @@ This work consists of the files ccicons.dtx, ccicons.ins,
 ccicons.map, ccicons.pfb, ccicons.tfm, ccicons-u.enc and
 the derived files ccicons.pdf, ccicons.sty and uccicons.fd.
 
-The files ccicons.pfb and ccicons.tfm have been
-generated from the file cc-icons-svg.zip available from
+The files ccicons.pfb and ccicons.tfm have been generated from the
+file cc-icons-svg.zip available from
 http://mirrors.creativecommons.org/presskit/icons/cc-icons-svg.zip
-and released by Creative Commons (http://creativecommons.org) under a
-Creative Commons Attribution 3.0 Unported license
-(http://creativecommons.org/licenses/by/3.0/).
+and released by Creative Commons under the Creative Commons Attribution
+3.0 Unported License: http://creativecommons.org/licenses/by/3.0/
