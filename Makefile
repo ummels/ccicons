@@ -16,7 +16,7 @@ endif
 pkg := ccicons
 files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf
 genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm
-tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out
+tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd
 
 # default rule
 
