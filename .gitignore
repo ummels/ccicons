@@ -15,4 +15,5 @@
 *.tfm
 *.pfb
 *.tmproj
-ccicons.tar.gz
+*.tds.zip
+*.tar.gz
