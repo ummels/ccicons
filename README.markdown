@@ -46,7 +46,7 @@ For a system-wide installation, replace updmap by updmap-sys.
 License
 -------
 
-Copyright (C) 2011 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (C) 2012 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3c
