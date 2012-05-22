@@ -94,6 +94,8 @@ install: all
 	$(INSTALLDATA) $(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/source/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).ins $(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/source/fonts/$(pkg)
+	$(INSTALLDATA) $(pkg).sfd $(TEXMFDIR)/source/fonts/$(pkg)
 
 .PHONY: uninstall
 uninstall:
@@ -104,6 +106,7 @@ uninstall:
 	$(RM) $(TEXMFDIR)/tex/latex/$(pkg)
 	$(RM) $(TEXMFDIR)/doc/latex/$(pkg)
 	$(RM) $(TEXMFDIR)/source/latex/$(pkg)
+	$(RM) $(TEXMFDIR)/source/fonts/$(pkg)
 
 # rule for cleaning the source tree
 
