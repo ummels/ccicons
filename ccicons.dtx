@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2011 by Michael Ummels <michael.ummels@rwth-aachen.de>
+% Copyright (C) 2012 by Michael Ummels <michael.ummels@rwth-aachen.de>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3c
@@ -28,10 +28,10 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{ccicons.dtx}[2011/09/18 v1.3 LaTeX support for Creative Commons icons]
+\ProvidesFile{ccicons.dtx}[2012/05/22 v1.4 LaTeX support for Creative Commons icons]
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<package>\ProvidesPackage{ccicons}[2011/09/18 v1.3 LaTeX support for Creative Commons icons]
+%<package>\ProvidesPackage{ccicons}[2012/05/22 v1.4 LaTeX support for Creative Commons icons]
 %<*driver>
 \documentclass{ltxdoc}
 
@@ -65,7 +65,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{0}
+% \CheckSum{242}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -109,27 +109,36 @@
 % stored in a PostScript Type 1 font, they can be scaled freely without
 % diminishing their visual appearance.
 %
+% Please note that all icons that can be typeset using this package are
+% trademarks of Creative Commons and are subject to the Creative Commons
+% trademark policy (see \url{http://creativecommons.org/policies}).
+%
 % \section{Usage}
 %
 % To use this package in your \LaTeX\ document, add
 % \begin{quote}
-% |\usepackage{ccicons}|
+% |\usepackage|\oarg{options}|{ccicons}|
 % \end{quote}
-% to the preamble of your document. This makes available the following
-% commands to typeset the icons provided by Creative Commons:
+% to the preamble of your document. For the available options see
+% Section~\ref{sec:options}.
+%
+% After the package has been loaded, the following commands can
+% be used to typeset the icons provided by CreativecCommons.
+%
 % \begin{longtable}[l]{ll}
-%   |\ccLogo| & \typesetcc{\ccLogo} \\
-%   |\ccAttribution| & \typesetcc{\ccAttribution} \\
-%   |\ccShareAlike| & \typesetcc{\ccShareAlike} \\
-%   |\ccNoDerivatives| & \typesetcc{\ccNoDerivatives} \\
-%   |\ccNonCommercial| & \typesetcc{\ccNonCommercial} \\
-%   |\ccNonCommercialEU| & \typesetcc{\ccNonCommercialEU} \\
-%   |\ccNonCommercialJP| & \typesetcc{\ccNonCommercialJP} \\
-%   |\ccZero| & \typesetcc{\ccZero} \\
-%   |\ccPublicDomain| & \typesetcc{\ccPublicDomain} \\
-%   |\ccSampling| & \typesetcc{\ccSampling} \\
-%   |\ccShare| & \typesetcc{\ccShare} \\
-%   |\ccRemix| & \typesetcc{\ccRemix}
+%   |\ccLogo| & \typesetcc{\ccLogo} \\[1ex]
+%   |\ccAttribution| & \typesetcc{\ccAttribution} \\[1ex]
+%   |\ccShareAlike| & \typesetcc{\ccShareAlike} \\[1ex]
+%   |\ccNoDerivatives| & \typesetcc{\ccNoDerivatives} \\[1ex]
+%   |\ccNonCommercial| & \typesetcc{\ccNonCommercial} \\[1ex]
+%   |\ccNonCommercialEU| & \typesetcc{\ccNonCommercialEU} \\[1ex]
+%   |\ccNonCommercialJP| & \typesetcc{\ccNonCommercialJP} \\[1ex]
+%   |\ccZero| & \typesetcc{\ccZero} \\[1ex]
+%   |\ccPublicDomain| & \typesetcc{\ccPublicDomain} \\[1ex]
+%   |\ccSampling| & \typesetcc{\ccSampling} \\[1ex]
+%   |\ccShare| & \typesetcc{\ccShare} \\[1ex]
+%   |\ccRemix| & \typesetcc{\ccRemix} \\[1ex]
+%   |\ccCopy| & \typesetcc{\ccCopy}
 % \end{longtable}
 %
 % \noindent
@@ -155,95 +164,139 @@
 %  |\ccpd| & \ccpd
 % \end{tabular}
 %
-% \bigskip\noindent
-% Please note that all icons that can be typeset using this package are
-% trademarks of Creative Commons and are subject to the Creative Commons
-% trademark policy (see \url{http://creativecommons.org/policies}).
+% \section{Options}\label{sec:options}
+%
+% Currently, the \pkg{ccicons} package supports two options.
+% First, the |scale=|\meta{factor} option allows to scale all
+% icons by an arbitrary factor. For example, to typeset the icons
+% at 90\% of their original size, load the package with the
+% option |scale=0.9|. Second, if the |copyright| option is
+% enabled, the command |\textcopyright| is redefined so that
+% it behaves like |\ccCopy|.
+%
+% \StopEventually{}
+%
+% \section{Implementation}
+%
+% \iffalse
+%<*package>
+% \fi
+%
+% We use \pkg{xkeyval}'s key mechanism to declare all options.
+% The first option controls whether |\textcopyright| is redefined.
+%    \begin{macrocode}
+\RequirePackage{xkeyval}
+\define@boolkey{ccicons.sty}[ccicons@]{copyright}[true]{}
+%    \end{macrocode}
+% The next option allows to scale the font by an arbitrary factor.
+%    \begin{macrocode}
+\newcommand{\ccicons@scale}{1.0}
+\define@key{ccicons.sty}{scale}{\renewcommand\ccicons@scale{#1}}
+%    \end{macrocode}
+% Process all options.
+%    \begin{macrocode}
+\ProcessOptionsX
+%    \end{macrocode}
+% We just declare one font family with one shape.
+%    \begin{macrocode}
+\DeclareFontFamily{U}{ccicons}{}
+\DeclareFontShape{U}{ccicons}{m}{n}{
+   <-> s * [\ccicons@scale] ccicons
+}{}
+%    \end{macrocode}
+% We provide internal commands to access the characters of the font
+% directly.
+%    \begin{macrocode}
+\newcommand{\ccicons@font}{\usefont{U}{ccicons}{m}{n}}
+\newcommand{\ccicons@logo}{\char0}
+\newcommand{\ccicons@by}{\char1}
+\newcommand{\ccicons@sa}{\char2}
+\newcommand{\ccicons@nd}{\char3}
+\newcommand{\ccicons@nc}{\char4}
+\newcommand{\ccicons@nceu}{\char5}
+\newcommand{\ccicons@ncjp}{\char6}
+\newcommand{\ccicons@pd}{\char7}
+\newcommand{\ccicons@zero}{\char8}
+\newcommand{\ccicons@sampling}{\char9}
+\newcommand{\ccicons@share}{\char10}
+\newcommand{\ccicons@remix}{\char11}
+\newcommand{\ccicons@copy}{\char12}
+%    \end{macrocode}
+% The following commands provide high-level access to to the font. We
+% define a command for each character in the font.
+%    \begin{macrocode}
+\newcommand{\ccLogo}{{\ccicons@font\ccicons@logo}}
+\newcommand{\ccAttribution}{{\ccicons@font\ccicons@by}}
+\newcommand{\ccShareAlike}{{\ccicons@font\ccicons@sa}}
+\newcommand{\ccNoDerivatives}{{\ccicons@font\ccicons@nd}}
+\newcommand{\ccNonCommercial}{{\ccicons@font\ccicons@nc}}
+\newcommand{\ccNonCommercialEU}{{\ccicons@font\ccicons@nceu}}
+\newcommand{\ccNonCommercialJP}{{\ccicons@font\ccicons@ncjp}}
+\newcommand{\ccPublicDomain}{{\ccicons@font\ccicons@pd}}
+\newcommand{\ccZero}{{\ccicons@font\ccicons@zero}}
+\newcommand{\ccSampling}{{\ccicons@font\ccicons@sampling}}
+\newcommand{\ccShare}{{\ccicons@font\ccicons@share}}
+\newcommand{\ccRemix}{{\ccicons@font\ccicons@remix}}
+\newcommand{\ccCopy}{{\ccicons@font\ccicons@copy}}
+%    \end{macrocode}
+% If the copyright option has been set, we redefine |\textcopyright|.
+%    \begin{macrocode}
+\ifccicons@copyright\renewcommand{\textcopyright}{\ccCopy}\fi
+%    \end{macrocode}
+% Finally, for each CC license we define a command that prints the CC logo
+% together with the icons applicable for that license.
+%    \begin{macrocode}
+\newcommand{\ccby}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by}}
+\newcommand{\ccbysa}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@sa}}
+\newcommand{\ccbynd}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nd}}
+\newcommand{\ccbync}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nc}}
+\newcommand{\ccbynceu}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nceu}}
+\newcommand{\ccbyncjp}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@ncjp}}
+\newcommand{\ccbyncsa}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nc\kern0.1em\ccicons@sa}}
+\newcommand{\ccbyncsaeu}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nceu\kern0.1em\ccicons@sa}}
+\newcommand{\ccbyncsajp}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@ncjp\kern0.1em\ccicons@sa}}
+\newcommand{\ccbyncnd}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nc\kern0.1em\ccicons@nd}}
+\newcommand{\ccbyncndeu}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@nceu\kern0.1em\ccicons@nd}}
+\newcommand{\ccbyncndjp}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@by%
+  \kern0.1em\ccicons@ncjp\kern0.1em\ccicons@nd}}
+\newcommand{\cczero}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@zero}}
+\newcommand{\ccpd}%
+  {\mbox{\ccicons@font\ccicons@logo\kern0.1em\ccicons@pd}}
+%    \end{macrocode}
+% \vspace{0pt}
 %
 % \section{Version history}
 %
 % Version 1.0 (2009/11/29): Initial version \\
 % Version 1.1 (2009/12/14): New font with additional glyphs \\
 % Version 1.2 (2011/05/22): Optimised some glyphs \\
-% Version 1.3 (2011/09/18): Merged font definitions into style file
+% Version 1.3 (2011/09/18): Merged font definitions into style file \\
+% Version 1.4 (2012/05/22): Added copyright logo, adjusted vertical
+% alignment, and added scale option
 %
-% \StopEventually{}
-%
-% \iffalse
-%<*package>
-% \fi
-%
-% \section{Implementation}
-%
-% We just declare one font family with one shape.
-%    \begin{macrocode}
-\DeclareFontFamily{U}{ccicons}{}
-\DeclareFontShape{U}{ccicons}{m}{n}{
-   <-> ccicons
-}{}
-%    \end{macrocode}
-%
-% We provide one internal command to access the characters of the font
-% directly.
-%    \begin{macrocode}
-\newcommand{\ccicons@char}[1]{{\usefont{U}{ccicons}{m}{n}\char#1}}
-%    \end{macrocode}
-%
-% The following commands provide high-level access to to the font. We
-% define a command for each character in the font.
-%    \begin{macrocode}
-\newcommand{\ccLogo}{\ccicons@char{0}}
-\newcommand{\ccAttribution}{\ccicons@char{1}}
-\newcommand{\ccShareAlike}{\ccicons@char{2}}
-\newcommand{\ccNoDerivatives}{\ccicons@char{3}}
-\newcommand{\ccNonCommercial}{\ccicons@char{4}}
-\newcommand{\ccNonCommercialEU}{\ccicons@char{5}}
-\newcommand{\ccNonCommercialJP}{\ccicons@char{6}}
-\newcommand{\ccPublicDomain}{\ccicons@char{7}}
-\newcommand{\ccZero}{\ccicons@char{8}}
-\newcommand{\ccSampling}{\ccicons@char{9}}
-\newcommand{\ccShare}{\ccicons@char{10}}
-\newcommand{\ccRemix}{\ccicons@char{11}}
-%    \end{macrocode}
-%
-% Finally, for each CC license we define a command that prints the CC logo
-% together with the icons applicable for that license.
-%    \begin{macrocode}
-\newcommand{\ccby}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution}}
-\newcommand{\ccbysa}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccShareAlike}}
-\newcommand{\ccbynd}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNoDerivatives}}
-\newcommand{\ccbync}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercial}}
-\newcommand{\ccbynceu}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialEU}}
-\newcommand{\ccbyncjp}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialJP}}
-\newcommand{\ccbyncsa}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercial%
-  \kern0.1em\ccShareAlike}}
-\newcommand{\ccbyncsaeu}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialEU%
-  \kern0.1em\ccShareAlike}}
-\newcommand{\ccbyncsajp}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialJP%
-  \kern0.1em\ccShareAlike}}
-\newcommand{\ccbyncnd}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercial%
-  \kern0.1em\ccNoDerivatives}}
-\newcommand{\ccbyncndeu}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialEU%
-  \kern0.1em\ccNoDerivatives}}
-\newcommand{\ccbyncndjp}%
-  {\mbox{\ccLogo\kern0.1em\ccAttribution\kern0.1em\ccNonCommercialJP%
-  \kern0.1em\ccNoDerivatives}}
-\newcommand{\cczero}%
-  {\mbox{\ccLogo\kern0.1em\ccZero}}
-\newcommand{\ccpd}%
-  {\mbox{\ccLogo\kern0.1em\ccPublicDomain}}
-%    \end{macrocode}
 % \iffalse
 %</package>
 % \fi
