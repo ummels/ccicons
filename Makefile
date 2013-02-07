@@ -70,8 +70,8 @@ $(pkg).tds.zip: $(files) $(genfiles) $(pkg).sty $(pkg).pdf
 
 # rules for building a tarball for CTAN
 
-.PHONY: ctan
-ctan: $(pkg).tar.gz
+.PHONY: dist
+dist: $(pkg).tar.gz
 
 $(pkg).tar.gz: $(pkg).tds.zip $(files) $(genfiles) $(pkg).pdf README.ctan
 	$(TAR) -cz -s '/README\.ctan/README/' $^ > $@
