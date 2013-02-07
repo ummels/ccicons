@@ -66,7 +66,7 @@ the derived files ccicons.pdf and ccicons.sty.
 
 The file ccicons.sfd is licensed under the Creative Commons
 Attribution 3.0 Unported License. To view a copy of this license, visit
-<http:// creativecommons.org/licenses/by-nc-nd/3.0/>, or send a letter to
+<http:// creativecommons.org/licenses/by/3.0/>, or send a letter to
 Creative Commons, 171 2nd Street, Suite 300, San Francisco, California,
 94105, USA.
 
