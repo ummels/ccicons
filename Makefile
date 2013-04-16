@@ -34,7 +34,7 @@ $(pkg).pfb $(pkg).afm: $(pkg).sfd
 # rules for building the OpenType font
 
 .PHONY: opentype
-type1: $(pkg).otf
+opentype: $(pkg).otf
 
 $(pkg).otf: $(pkg).sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).otf"); Quit(0)'
@@ -96,7 +96,7 @@ install: all
 	$(INSTALLDATA) $(pkg).tfm $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(INSTALLDATA) $(pkg).pfb $(TEXMFDIR)/fonts/type1/public/$(pkg)
-  $(INSTALLDIR) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(INSTALLDATA) $(pkg).otf $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
