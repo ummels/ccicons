@@ -14,6 +14,7 @@
 *.afm
 *.tfm
 *.pfb
+*.otf
 *.tmproj
 *.tds.zip
 *.tar.gz

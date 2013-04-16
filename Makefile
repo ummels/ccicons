@@ -15,7 +15,7 @@ endif
 
 pkg := ccicons
 files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd
-genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm
+genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf
 tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd
 
 # default rule
@@ -30,6 +30,14 @@ type1: $(pkg).pfb
 
 $(pkg).pfb $(pkg).afm: $(pkg).sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).pfb"); Quit(0)'
+
+# rules for building the OpenType font
+
+.PHONY: opentype
+type1: $(pkg).otf
+
+$(pkg).otf: $(pkg).sfd
+	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).otf"); Quit(0)'
 
 # rules for building the TeX font metrics
 
@@ -88,6 +96,8 @@ install: all
 	$(INSTALLDATA) $(pkg).tfm $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(INSTALLDATA) $(pkg).pfb $(TEXMFDIR)/fonts/type1/public/$(pkg)
+  $(INSTALLDIR) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
+	$(INSTALLDATA) $(pkg).otf $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(pkg)
@@ -103,6 +113,7 @@ uninstall:
 	$(RM) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(RM) $(TEXMFDIR)/tex/latex/$(pkg)
 	$(RM) $(TEXMFDIR)/doc/latex/$(pkg)
 	$(RM) $(TEXMFDIR)/source/latex/$(pkg)
