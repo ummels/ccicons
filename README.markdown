@@ -20,8 +20,7 @@ the details.
 Installation
 ------------
 
-Building the Type 1 fonts and the TeX font metrics requires fontforge
-and afm2tfm.
+Building the fonts requires fontforge and afm2tfm.
 
 To install the fonts, the accompanying LaTeX package and the documentation in
 your home texmf tree, run:
@@ -48,7 +47,7 @@ License
 
 Copyright (C) 2013 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
-The font components of this software, e.g. MetaFont (.mf), OpenType (.otf),
+The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the
 [SIL Open Font License][OFL], Version 1.1.
 

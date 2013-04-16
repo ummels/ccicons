@@ -27,6 +27,7 @@ Installation
    - fonts/map/dvips/ccicons
    - fonts/tfm/public/ccicons
    - fonts/type1/public/ccicons
+   - fonts/opentype/public/ccicons
    - tex/latex/ccicons
 
 3. Copy all relevant files into the texmf tree:
@@ -36,6 +37,7 @@ Installation
    - ccicons.map goes to fonts/map/dvips/ccicons
    - ccicons.tfm goes to fonts/tfm/public/ccicons
    - ccicons.pfb goes to fonts/type1/public/ccicons
+   - ccicons.otf goes to fonts/opentype/public/ccicons
    - ccicons.sty goes to tex/latex/ccicons
 
 4. Afterwards, you may need to regenerate the file database:
