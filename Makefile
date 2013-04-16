@@ -1,4 +1,4 @@
-SHEL := /bin/sh
+SHELL := /bin/sh
 PDFLATEX := pdflatex
 FONTFORGE := fontforge
 AFMTOTFM := afm2tfm
