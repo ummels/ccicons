@@ -21,7 +21,7 @@ tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $
 # default rule
 
 .PHONY: all
-all: type1 metrics latex
+all: type1 opentype metrics latex
 
 # rules for building the Postscript font
 
