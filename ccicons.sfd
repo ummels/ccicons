@@ -20,7 +20,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1260742743
-ModificationTime: 1337700292
+ModificationTime: 1366225369
 PfmFamily: 17
 TTFWeight: 500
 TTFWidth: 5
@@ -99,6 +99,7 @@ SplineSet
  363 123 396 96 459 96 c 0
  531 96 564 168 564 246 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: b
@@ -145,6 +146,7 @@ SplineSet
  512 435 492 414 450 414 c 0
  408 414 387 435 387 477 c 0xf6
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: c
@@ -198,6 +200,7 @@ SplineSet
  685 143 644 110 588 110 c 0
  504 110 454 165 454 250 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: d
@@ -238,6 +241,7 @@ SplineSet
  293 211 l 1
  620 211 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: e
@@ -302,6 +306,7 @@ SplineSet
  173 492 156 471 141 449 c 1
  289 383 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: m
@@ -404,6 +409,7 @@ SplineSet
  440 501 l 1
  440 504 l 2xf542
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: n
@@ -461,6 +467,7 @@ SplineSet
  535 352 l 1
  510 370 484 378 458 378 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: p
@@ -517,6 +524,7 @@ SplineSet
  569 180 l 2
  613 180 632 208 632 252 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: r
@@ -576,6 +584,7 @@ SplineSet
  644 95 l 1
  725 129 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: s
@@ -634,6 +643,7 @@ SplineSet
  610 47 l 1
  610 329 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: y
@@ -698,6 +708,7 @@ SplineSet
  621 256 l 1
  621 224 l 1
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: z
@@ -748,6 +759,7 @@ SplineSet
  819 363 773 449 712 510 c 0
  640 582 553 619 451 619 c 0
 EndSplineSet
+Validated: 1
 EndChar
 
 StartChar: copyright
@@ -755,8 +767,8 @@ Encoding: 12 169 12
 Width: 900
 VWidth: 0
 Flags: W
-HStem: -200 83<328.31 575.572> 26.2998 96<416.776 536.223> 376.7 96<415.039 528.843> 619 81<323.51 577.019>
-VStem: 0 81<128.438 374.825> 250.4 129.6<162.6 340.819> 819 81<119.9 374.996>
+HStem: -200 83<328.31 575.572> 26 96<417.824 535.624> 377 96<415.136 528.264> 619 81<323.51 577.019>
+VStem: 0 81<128.438 374.825> 250 130<162.378 340.91> 819 81<119.9 374.996>
 LayerCount: 2
 Fore
 SplineSet
@@ -778,18 +790,19 @@ SplineSet
  784 61 819 147 819 250 c 0
  819 363 773 449 712 510 c 0
  640 582 553 619 451 619 c 0
-250.400390625 250.299804688 m 0
- 250.400390625 381.5 335.200195312 472.700195312 461.599609375 472.700195312 c 0
- 551.200195312 472.700195312 613.599609375 437.5 652 368.700195312 c 1
- 556 319.099609375 l 1
- 540 351.099609375 514.400390625 376.700195312 476 376.700195312 c 0
- 412 376.700195312 380 335.099609375 380 250.299804688 c 0
- 380 179.900390625 408.799804688 122.299804688 476 122.299804688 c 0
- 517.599609375 122.299804688 548 143.099609375 565.599609375 184.700195312 c 1
- 653.599609375 139.900390625 l 1
- 620 77.5 554.400390625 26.2998046875 464.799804688 26.2998046875 c 0
- 332 26.2998046875 250.400390625 114.299804688 250.400390625 250.299804688 c 0
+250 250 m 0
+ 250 382 335 473 462 473 c 0
+ 551 473 614 438 652 369 c 1
+ 556 319 l 1
+ 540 351 514 377 476 377 c 0
+ 412 377 380 335 380 250 c 0
+ 380 180 409 122 476 122 c 0
+ 518 122 548 143 566 185 c 1
+ 654 140 l 1
+ 620 78 554 26 465 26 c 0
+ 332 26 250 114 250 250 c 0
 EndSplineSet
+Validated: 1
 EndChar
 EndChars
 EndSplineFont
