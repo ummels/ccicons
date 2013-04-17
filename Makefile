@@ -14,7 +14,7 @@ TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 endif
 
 pkg := ccicons
-files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd
+files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
 genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf
 tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd
 
@@ -100,6 +100,8 @@ install: all
 	$(INSTALLDATA) $(pkg).otf $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(pkg)
+	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/source/latex/$(pkg)
@@ -115,6 +117,7 @@ uninstall:
 	$(RM) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(RM) $(TEXMFDIR)/tex/latex/$(pkg)
+	$(RM) $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(RM) $(TEXMFDIR)/doc/latex/$(pkg)
 	$(RM) $(TEXMFDIR)/source/latex/$(pkg)
 	$(RM) $(TEXMFDIR)/source/fonts/$(pkg)

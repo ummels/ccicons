@@ -1,0 +1,39 @@
+FONTLOG for CCICons
+--------------------
+
+This file provides detailed information on the CCIcons font family.
+This information should be distributed along with the CCIcons fonts
+and any derivative works.
+
+
+Basic Font Information
+----------------------
+
+CCICons is a font consisting of symbols provided by Creative Commons
+to indicate their licenses.
+
+The symbols in this font have been taken from the file cc-icons-svg.zip
+available from
+<http://mirrors.creativecommons.org/presskit/icons/cc-icons-svg.zip>
+and released by Creative Commons under the Creative Commons Attribution
+3.0 Unported License: <http://creativecommons.org/licenses/by/3.0/>
+
+CCIcons development is currently hosted on:
+http://github.com/ummels/ccicons
+
+
+ChangeLog
+---------
+
+16 Apr 2013 (Michael Ummels) CCIcons version 1.002
+- First release under OFL
+
+
+Acknowledgements
+-------------------------
+(Here is where contributors can be acknowledged. If you make modifications be sure to add your name (N), email (E), web-address (W) and description (D). This list is sorted by last name in alphabetical order.)
+
+N: Michael Ummels
+E: michael.ummels@rwth-aachen.de
+W: http://www.ummels.de
+D: Author
