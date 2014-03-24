@@ -3,7 +3,7 @@ PDFLATEX := pdflatex
 FONTFORGE := fontforge
 AFMTOTFM := afm2tfm
 RM := rm -rf
-TAR := tar
+TAR := gtar -c -z --owner=root --group=root --mode='a+r'
 ZIP := zip
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
@@ -82,7 +82,7 @@ $(pkg).tds.zip: $(files) $(genfiles) $(pkg).sty $(pkg).pdf
 dist: $(pkg).tar.gz
 
 $(pkg).tar.gz: $(pkg).tds.zip $(files) $(genfiles) $(pkg).pdf README.ctan
-	$(TAR) -cz -s '/README\.ctan/README/' $^ > $@
+	$(TAR) --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan,README,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
 
 # rules for (un)installing everything
 
