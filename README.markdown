@@ -10,7 +10,7 @@ in their documents.
 Usage
 -----
 
-To use package, include
+To use this package, include
 
     \usepackage{ccicons}
 
@@ -45,7 +45,7 @@ For a system-wide installation, replace updmap by updmap-sys.
 License
 -------
 
-Copyright (C) 2013 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (C) 2011-2015 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the
