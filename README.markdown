@@ -1,5 +1,7 @@
-ccicons - Typesetting Creative Commons icons using LaTeX
-========================================================
+# ccicons
+###Typesetting Creative Commons icons using LaTeX
+
+[![Build Status](https://travis-ci.org/ummels/ccicons.svg?branch=master)](https://travis-ci.org/ummels/ccicons)
 
 This package offers authors who want to publish their documents under
 a [Creative Commons][CC] license an easy way to include the relevant icons
@@ -7,8 +9,7 @@ in their documents.
 
 [CC]: http://creativecommons.org
 
-Usage
------
+## Usage
 
 To use this package, include
 
@@ -17,8 +18,7 @@ To use this package, include
 in the preamble of your LaTeX document. See the PDF documentation for
 the details.
 
-Installation
-------------
+## Installation
 
 Building the fonts requires fontforge and afm2tfm.
 
@@ -42,8 +42,7 @@ Finally, you need to activate the map file:
 
 For a system-wide installation, replace updmap by updmap-sys.
 
-License
--------
+## License
 
 Copyright (C) 2011-2015 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
