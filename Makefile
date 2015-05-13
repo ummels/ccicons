@@ -18,8 +18,8 @@ endif
 pkg := ccicons
 files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
 genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf
-tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-latex.aux test-latex.log
-testfiles := test-latex.pdf test-latex.ps test-latex.dvi
+tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-$(pkg).aux test-$(pkg).log
+testfiles := test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi
 
 # default rule
 
@@ -55,16 +55,16 @@ $(pkg).tfm: $(pkg).afm
 .PHONY: latex
 latex: $(pkg).sty
 
-$(pkg).sty: $(pkg).ins $(pkg).dtx
+$(pkg).sty test-$(pkg).tex: $(pkg).ins $(pkg).dtx
 	$(PDFLATEX) $(pkg).ins
 	
-# rules for testing the LaTeX package
+# rules for running the tests
 
 .PHONY: test
-test: $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
-	$(PDFLATEX) "\pdfmapfile{+$(pkg).map}\input{test-latex}"
-	$(LATEX) test-latex.tex
-	$(DVIPS) -u +$(pkg).map test-latex.dvi
+test: $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map test-$(pkg).tex
+	$(PDFLATEX) "\pdfmapfile{+$(pkg).map}\input{test-$(pkg)}"
+	$(LATEX) test-$(pkg).tex
+	$(DVIPS) -u +$(pkg).map test-$(pkg).dvi
 
 # rules for building the PDF documentation
 
@@ -137,7 +137,7 @@ uninstall:
 
 .PHONY: clean
 clean:
-	$(RM) $(genfiles) $(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
+	$(RM) $(genfiles) $(pkg).sty test-$(pkg).tex $(pkg).tds.zip $(pkg).tar.gz
 	$(RM) $(tempfiles) $(testfiles)
 
 # delete files on error

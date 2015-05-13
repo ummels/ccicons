@@ -17,6 +17,7 @@
 *.otf
 *.tmproj
 *.tds.zip
+*.tex
 *.tar.gz
 *.dvi
 *.ps
