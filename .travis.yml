@@ -1,0 +1,9 @@
+language: bash
+sudo: false
+script: make test
+addons:
+    apt:
+        packages:
+            - fontforge-nox
+            - texlive-latex-recommended
+            - texlive-font-utils
