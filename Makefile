@@ -1,5 +1,7 @@
 SHELL := /bin/sh
-PDFLATEX := pdflatex
+PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
+LATEX := latex -interaction nonstopmode -halt-on-error
+DVIPS := dvips
 FONTFORGE := fontforge
 AFMTOTFM := afm2tfm
 RM := rm -rf
@@ -16,7 +18,8 @@ endif
 pkg := ccicons
 files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
 genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf
-tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd
+tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-latex.aux test-latex.log
+testfiles := test-latex.pdf test-latex.ps test-latex.dvi
 
 # default rule
 
@@ -54,6 +57,14 @@ latex: $(pkg).sty
 
 $(pkg).sty: $(pkg).ins $(pkg).dtx
 	$(PDFLATEX) $(pkg).ins
+	
+# rules for testing the LaTeX package
+
+.PHONY: test
+test: $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
+	$(PDFLATEX) "\pdfmapfile{+$(pkg).map}\input{test-latex}"
+	$(LATEX) test-latex.tex
+	$(DVIPS) -u +$(pkg).map test-latex.dvi
 
 # rules for building the PDF documentation
 
@@ -127,7 +138,7 @@ uninstall:
 .PHONY: clean
 clean:
 	$(RM) $(genfiles) $(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
-	$(RM) $(tempfiles)
+	$(RM) $(tempfiles) $(testfiles)
 
 # delete files on error
 

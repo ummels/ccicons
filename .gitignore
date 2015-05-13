@@ -18,3 +18,7 @@
 *.tmproj
 *.tds.zip
 *.tar.gz
+*.dvi
+*.ps
+*.pdf
+!ccicons.pdf
