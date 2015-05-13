@@ -15,7 +15,7 @@ To use this package, include
 
     \usepackage{ccicons}
 
-in the preamble of your LaTeX document. See the PDF documentation for
+in the preamble of your LaTeX document. See the [PDF documentation](ccicons.pdf) for
 the details.
 
 ## Installation
