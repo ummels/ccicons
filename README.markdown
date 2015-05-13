@@ -1,11 +1,11 @@
 # ccicons
 ###Typesetting Creative Commons icons using LaTeX
 
-[![Build Status](https://travis-ci.org/ummels/ccicons.svg?branch=master)](https://travis-ci.org/ummels/ccicons)
-
 This package offers authors who want to publish their documents under
 a [Creative Commons][CC] license an easy way to include the relevant icons
 in their documents.
+
+[![Build Status](https://travis-ci.org/ummels/ccicons.svg?branch=master)](https://travis-ci.org/ummels/ccicons)
 
 [CC]: http://creativecommons.org
 
