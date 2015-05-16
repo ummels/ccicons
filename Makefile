@@ -65,16 +65,16 @@ $(pkg).sty test-$(pkg).tex: $(pkg).ins $(pkg).dtx
 test: $(testfiles)
 
 test-$(pkg).pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
-	$(PDFLATEX) -jobname test-$(pkg) "\pdfmapfile{=$(pkg).map}\input{test-$(pkg)}"
+	$(PDFLATEX) -jobname test-$(pkg) "\pdfmapfile{$(pkg).map}\input{test-$(pkg)}"
 
 test-$(pkg).ps: test-$(pkg).dvi $(pkg).pfb $(pkg).map
-	$(DVIPS) -u +$(pkg).map test-$(pkg).dvi
+	$(DVIPS) -u $(pkg).map test-$(pkg).dvi
 
 test-$(pkg).dvi: $(pkg).tfm $(pkg).sty test-$(pkg).tex
 	$(LATEX) test-$(pkg).tex
 
 test-$(pkg)-luatex.pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
-	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('ccicons.map')}\input{test-ccicons.tex}"
+	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('ccicons.map')}\input{test-ccicons}"
 
 # rules for building the PDF documentation
 
