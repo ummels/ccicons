@@ -1,6 +1,7 @@
 SHELL := /bin/sh
 PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
 LATEX := latex -interaction nonstopmode -halt-on-error
+LUALATEX := lualatex -interaction nonstopmode -halt-on-error
 DVIPS := dvips
 FONTFORGE := fontforge
 AFMTOTFM := afm2tfm
@@ -18,8 +19,8 @@ endif
 pkg := ccicons
 files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
 genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf
-tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-$(pkg).aux test-$(pkg).log
-testfiles := test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi
+tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-$(pkg).aux test-$(pkg).log test-$(pkg)-luatex.aux test-$(pkg)-luatex.log
+testfiles := test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi test-$(pkg)-luatex.pdf
 
 # default rule
 
@@ -56,15 +57,24 @@ $(pkg).tfm: $(pkg).afm
 latex: $(pkg).sty
 
 $(pkg).sty test-$(pkg).tex: $(pkg).ins $(pkg).dtx
-	$(PDFLATEX) $(pkg).ins
+	$(LATEX) $(pkg).ins
 	
 # rules for running the tests
 
 .PHONY: test
-test: $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map test-$(pkg).tex
-	$(PDFLATEX) "\pdfmapfile{+$(pkg).map}\input{test-$(pkg)}"
-	$(LATEX) test-$(pkg).tex
+test: $(testfiles)
+
+test-$(pkg).pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
+	$(PDFLATEX) -jobname test-$(pkg) "\pdfmapfile{=$(pkg).map}\input{test-$(pkg)}"
+
+test-$(pkg).ps: test-$(pkg).dvi $(pkg).pfb $(pkg).map
 	$(DVIPS) -u +$(pkg).map test-$(pkg).dvi
+
+test-$(pkg).dvi: $(pkg).tfm $(pkg).sty test-$(pkg).tex
+	$(LATEX) test-$(pkg).tex
+
+test-$(pkg)-luatex.pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
+	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('ccicons.map')}\input{test-ccicons.tex}"
 
 # rules for building the PDF documentation
 
