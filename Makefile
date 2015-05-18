@@ -81,10 +81,10 @@ test-$(pkg)-luatex.pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).
 .PHONY: doc
 doc: $(pkg).pdf
 
-$(pkg).pdf: $(pkg).dtx
-	$(PDFLATEX) $(pkg).dtx
+$(pkg).pdf: $(pkg).dtx $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
+	$(PDFLATEX) "\pdfmapfile{+$(pkg).map}\input{$<}"
 	while grep -s 'Rerun to get' $(pkg).log; do \
-	  $(PDFLATEX) $(pkg).dtx; \
+	  $(PDFLATEX) "\pdfmapfile{+$(pkg).map}\input{$<}"; \
 	done
 
 # rules for building a TDS zip file
