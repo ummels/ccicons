@@ -74,7 +74,7 @@ test-$(pkg).dvi: $(pkg).tfm $(pkg).sty test-$(pkg).tex
 	$(LATEX) test-$(pkg).tex
 
 test-$(pkg)-luatex.pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
-	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('ccicons.map')}\input{test-ccicons}"
+	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(pkg).map')}\input{test-$(pkg)}"
 
 # rules for building the PDF documentation
 
