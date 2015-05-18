@@ -6,4 +6,3 @@ addons:
         packages:
             - fontforge-nox
             - texlive-latex-recommended
-            - texlive-font-utils
