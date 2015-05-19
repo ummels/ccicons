@@ -62,7 +62,7 @@ $(pkg).sty test-$(pkg).tex: $(pkg).ins $(pkg).dtx
 # rules for running the tests
 
 .PHONY: test
-test: all
+test: all test-$(pkg).tex
 	@echo "Testing pdflatex..."
 	$(PDFLATEX) -jobname test-$(pkg) "\pdfmapfile{$(pkg).map}\input{test-$(pkg)}"
 	@echo ""
