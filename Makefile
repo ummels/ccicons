@@ -62,18 +62,15 @@ $(pkg).sty test-$(pkg).tex: $(pkg).ins $(pkg).dtx
 # rules for running the tests
 
 .PHONY: test
-test: $(testfiles)
-
-test-$(pkg).pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
+test: all
+	@echo "Testing pdflatex..."
 	$(PDFLATEX) -jobname test-$(pkg) "\pdfmapfile{$(pkg).map}\input{test-$(pkg)}"
-
-test-$(pkg).ps: test-$(pkg).dvi $(pkg).pfb $(pkg).map
-	$(DVIPS) -u $(pkg).map test-$(pkg).dvi
-
-test-$(pkg).dvi: $(pkg).tfm $(pkg).sty test-$(pkg).tex
+	@echo ""
+	@echo "Testing latex+dvips..."
 	$(LATEX) test-$(pkg).tex
-
-test-$(pkg)-luatex.pdf: test-$(pkg).tex $(pkg).pfb $(pkg).tfm $(pkg).sty $(pkg).map
+	$(DVIPS) -u $(pkg).map test-$(pkg).dvi
+	@echo ""
+	@echo "Testing lualatex..."
 	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(pkg).map')}\input{test-$(pkg)}"
 
 # rules for building the PDF documentation
