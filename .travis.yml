@@ -1,6 +1,6 @@
 language: bash
 sudo: false
-script: make all test
+script: make test
 addons:
     apt:
         packages:
