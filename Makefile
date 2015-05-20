@@ -17,7 +17,6 @@ TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 endif
 
 pkg := ccicons
-name := CCIcons
 files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
 genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf $(pkg).map
 tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-$(pkg).aux test-$(pkg).log test-$(pkg)-luatex.aux test-$(pkg)-luatex.log
@@ -44,21 +43,16 @@ opentype: $(pkg).otf
 $(pkg).otf: $(pkg).sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).otf"); Quit(0)'
 
-# rules for building the TeX font metrics
+# rules for building the TeX font metrics and the mapfile
 
 .PHONY: metrics
 metrics: $(pkg).tfm
 
-$(pkg).tfm: $(pkg).afm
-	$(AFMTOTFM) $(pkg).afm
-
-# rules for building the map file
-
 .PHONY: mapfile
 mapfile: $(pkg).map
 
-$(pkg).map:
-	echo "$(pkg) $(name) <$(pkg).pfb" > $@
+$(pkg).tfm $(pkg).map: $(pkg).afm
+	res=$$($(AFMTOTFM) $(pkg).afm) && echo "$$res <$(pkg).pfb" > $(pkg).map
 
 # rules for building the LaTeX package
 
