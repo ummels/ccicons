@@ -22,4 +22,5 @@
 *.dvi
 *.ps
 *.pdf
+*.map
 !ccicons.pdf

@@ -17,15 +17,16 @@ TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 endif
 
 pkg := ccicons
-files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).map $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
-genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf
+name := CCIcons
+files := $(pkg).ins $(pkg).dtx $(pkg)-u.enc $(pkg).pdf $(pkg).sfd OFL.txt FONTLOG.txt
+genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf $(pkg).map
 tempfiles := $(pkg).aux $(pkg).log $(pkg).idx $(pkg).ilg $(pkg).ind $(pkg).glo $(pkg).gls $(pkg).out $(pkg).hd test-$(pkg).aux test-$(pkg).log test-$(pkg)-luatex.aux test-$(pkg)-luatex.log
 testfiles := test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi test-$(pkg)-luatex.pdf
 
 # default rule
 
 .PHONY: all
-all: type1 opentype metrics latex
+all: type1 opentype metrics mapfile latex
 
 # rules for building the Postscript font
 
@@ -51,6 +52,14 @@ metrics: $(pkg).tfm
 $(pkg).tfm: $(pkg).afm
 	$(AFMTOTFM) $(pkg).afm
 
+# rules for building the map file
+
+.PHONY: mapfile
+mapfile: $(pkg).map
+
+$(pkg).map:
+	echo "$(pkg) $(name) <$(pkg).pfb" > $@
+
 # rules for building the LaTeX package
 
 .PHONY: latex
@@ -58,7 +67,7 @@ latex: $(pkg).sty
 
 $(pkg).sty test-$(pkg).tex: $(pkg).ins $(pkg).dtx
 	$(LATEX) $(pkg).ins
-	
+
 # rules for running the tests
 
 .PHONY: test
