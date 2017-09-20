@@ -1,5 +1,5 @@
 # ccicons
-###Typesetting Creative Commons icons using LaTeX
+### Typesetting Creative Commons icons using LaTeX
 
 This package offers authors who want to publish their documents under
 a [Creative Commons][CC] license an easy way to include the relevant icons
