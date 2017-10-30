@@ -12,18 +12,21 @@ Basic Font Information
 CCICons is a font consisting of symbols provided by Creative Commons
 to indicate their licenses.
 
-The symbols in this font have been taken from the file cc-icons-svg.zip
-available from
-<http://mirrors.creativecommons.org/presskit/icons/cc-icons-svg.zip>
+The symbols in this font have been obtained from
+<https://creativecommons.org/about/downloads/>
 and released by Creative Commons under the Creative Commons Attribution
-3.0 Unported License: <http://creativecommons.org/licenses/by/3.0/>
+3.0 Unported License: <https://creativecommons.org/licenses/by/3.0/>
 
 CCIcons development is currently hosted on:
-http://github.com/ummels/ccicons
+https://github.com/ummels/ccicons
 
 
 ChangeLog
 ---------
+
+30 Oct 2017 (Michael Ummels) CCIcons version 1.100
+- Add new Public Domain icon
+- Assign old Public Domain icon to 'P' (capital P) glyph
 
 16 Apr 2013 (Michael Ummels) CCIcons version 1.002
 - First release under OFL

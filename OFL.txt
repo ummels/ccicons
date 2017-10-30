@@ -1,4 +1,4 @@
-Copyright (c) 2011-2015 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (c) 2011-2017 by Michael Ummels <michael.ummels@rwth-aachen.de>
 All Rights Reserved.
 
 "CCIcons" is Reserved Font Name for this Font Software.

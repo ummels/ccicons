@@ -44,7 +44,7 @@ For a system-wide installation, replace updmap by updmap-sys.
 
 ## License
 
-Copyright (C) 2011-2015 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (C) 2011-2017 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the
@@ -52,11 +52,10 @@ TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the
 
 [OFL]: http://scripts.sil.org/OFL
 
-The symbols in this font have been taken from the file cc-icons-svg.zip
-available from
-<http://mirrors.creativecommons.org/presskit/icons/cc-icons-svg.zip>
+The symbols in this font have been obtained from
+<https://creativecommons.org/about/downloads/>
 and released by Creative Commons under the Creative Commons Attribution
-3.0 Unported License: <http://creativecommons.org/licenses/by/3.0/>
+3.0 Unported License: <https://creativecommons.org/licenses/by/3.0/>
 
 The LaTeX support files contained in this software may be modified and
 distributed under the terms and conditions of the
