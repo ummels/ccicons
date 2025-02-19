@@ -53,7 +53,7 @@ For a system-wide installation, replace updmap by updmap-sys.
 License
 -------
 
-Copyright (C) 2011-2017 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (C) 2011-2025 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the

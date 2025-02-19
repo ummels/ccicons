@@ -5,8 +5,6 @@ This package offers authors who want to publish their documents under
 a [Creative Commons][CC] license an easy way to include the relevant icons
 in their documents.
 
-[![Build Status](https://travis-ci.org/ummels/ccicons.svg?branch=master)](https://travis-ci.org/ummels/ccicons)
-
 [CC]: http://creativecommons.org
 
 ## Usage
@@ -15,8 +13,8 @@ To use this package, include
 
     \usepackage{ccicons}
 
-in the preamble of your LaTeX document. See the [PDF documentation](ccicons.pdf) for
-the details.
+in the preamble of your LaTeX document. See the
+[PDF documentation](ccicons.pdf) for the details.
 
 ## Installation
 
@@ -44,7 +42,7 @@ For a system-wide installation, replace updmap by updmap-sys.
 
 ## License
 
-Copyright (C) 2011-2017 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (C) 2011-2025 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the
