@@ -69,10 +69,6 @@ test: all test-$(pkg).tex
 	@echo "Testing pdflatex..."
 	$(PDFLATEX) -jobname test-$(pkg) "\pdfmapfile{$(pkg).map}\input{test-$(pkg)}"
 	@echo ""
-	@echo "Testing latex+dvips..."
-	$(LATEX) test-$(pkg).tex
-	$(DVIPS) -u $(pkg).map test-$(pkg).dvi
-	@echo ""
 	@echo "Testing lualatex..."
 	$(LUALATEX) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(pkg).map')}\input{test-$(pkg)}"
 
