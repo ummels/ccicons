@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Install dependencies
-      run: apt install fontforge-nox texlive-latex-recommended
+      run: sudo apt install fontforge-nox texlive-latex-recommended
 
     - name: Run make
       run: make
