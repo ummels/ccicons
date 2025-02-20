@@ -40,5 +40,5 @@ list is sorted by last name in alphabetical order.)
 
 N: Michael Ummels
 E: michael@ummels.de
-W: http://www.ummels.de
+W: https://www.ummels.de
 D: Author

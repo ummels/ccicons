@@ -1,11 +1,9 @@
-Copyright (c) 2011-2025 by Michael Ummels <michael@ummels.de>
-All Rights Reserved.
-
-"CCIcons" is Reserved Font Name for this Font Software.
+Copyright (c) 2011-2025 by Michael Ummels <michael@ummels.de>,
+with Reserved Font Name CCIcons.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
+https://openfontlicense.org
 
 -----------------------------------------------------------
 SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
