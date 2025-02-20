@@ -2,10 +2,8 @@
 ### Typesetting Creative Commons icons using LaTeX
 
 This package offers authors who want to publish their documents under
-a [Creative Commons][CC] license an easy way to include the relevant icons
-in their documents.
-
-[CC]: http://creativecommons.org
+a [Creative Commons](https://creativecommons.org) license an easy way to
+include the relevant icons in their documents.
 
 ## Usage
 
@@ -30,15 +28,19 @@ variable TEXMFDIR:
 
     make install TEXMFDIR=/usr/local/texlive/texmf-local
 
-Afterwards, you may need to regenerate the file database:
+Afterwards, make sure to update the file database using `mktexlsr` or
+`texhash` (the command may vary depending on what distribution you use).
 
-    texhash
+Finally, you need to activate the map file `fdsymbol.map`. For TeX Live, this
+can be achieved by the following command:
 
-Finally, you need to activate the map file:
+    updmap-user --enable Map=fdsymbol.map
 
-    updmap --enable Map=ccicons.map
+For installation in a system-wide texmf tree, replace `updmap-user` by
+`updmap-sys`.
 
-For a system-wide installation, replace updmap by updmap-sys.
+Make sure you have read https://tug.org/texlive/scripts-sys-user.html before
+invoking `updmap-user`.
 
 ## License
 
@@ -46,20 +48,17 @@ Copyright (C) 2011-2025 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the
-[SIL Open Font License][OFL], Version 1.1.
-
-[OFL]: http://scripts.sil.org/OFL
+[SIL Open Font License](https://openfontlicense.org), Version 1.1.
 
 The symbols in this font have been obtained from
-<https://creativecommons.org/about/downloads/>
-and released by Creative Commons under the Creative Commons Attribution
-3.0 Unported License: <https://creativecommons.org/licenses/by/3.0/>
+<https://creativecommons.org/mission/downloads/>
+and are subject to the
+[Creative Commons Trademark Policy](https://creativecommons.org/policies/).
 
 The LaTeX support files contained in this software may be modified and
 distributed under the terms and conditions of the
-[LaTeX Project Public License][LPPL], version 1.3c or greater (your choice).
-
-[LPPL]: http://www.latex-project.org/lppl/
+[LaTeX Project Public License](https://www.latex-project.org/lppl/),
+version 1.3c or greater (your choice).
 
 This work has the LPPL maintenance status `maintained'.
 

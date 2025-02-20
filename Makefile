@@ -98,8 +98,8 @@ $(pkg).tds.zip: $(files) $(genfiles) $(pkg).sty $(pkg).pdf
 .PHONY: dist
 dist: $(pkg).tar.gz
 
-$(pkg).tar.gz: $(pkg).tds.zip $(files) $(genfiles) $(pkg).pdf README.ctan
-	$(TAR) --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan,README,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
+$(pkg).tar.gz: $(pkg).tds.zip $(files) $(genfiles) $(pkg).pdf README.ctan.md
+	$(TAR) --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan\.md,README.md,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
 
 # rules for (un)installing everything
 
@@ -120,6 +120,7 @@ install: all
 	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDATA) README.ctan.md $(TEXMFDIR)/doc/latex/$(pkg)/README.md
 	$(INSTALLDATA) $(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/source/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).ins $(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
