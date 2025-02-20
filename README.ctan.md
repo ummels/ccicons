@@ -2,8 +2,11 @@
 ### Typesetting Creative Commons icons using LaTeX
 
 This package offers authors who want to publish their documents under
-a Creative Commons license an easy way to include the relevant icons
-in their documents.
+a [Creative Commons](https://creativecommons.org) license an easy way to
+include the relevant icons in their documents.
+
+The development of this font package is hosted at
+[GitHub](https://github.com/ummels/ccicons).
 
 ## Usage
 
