@@ -1,4 +1,5 @@
 # ccicons
+
 ### Typesetting Creative Commons icons using LaTeX
 
 This package offers authors who want to publish their documents under
@@ -12,39 +13,38 @@ To use this package, include
     \usepackage{ccicons}
 
 in the preamble of your LaTeX document. See the
-[PDF documentation](ccicons.pdf) for the details.
+[PDF documentation](https://ummels.github.io/ccicons/ccicons.pdf)
+for the details.
 
 ## Installation
 
-Building the fonts requires fontforge and afm2tfm.
+The font and the corresponding LaTeX support package are best installed through
+the package manager of a TeX distribution such as
+[TeX Live](https://www.tug.org/texlive/) or MiKTeX.
 
-To install the fonts, the accompanying LaTeX package and the documentation in
+## Build instructions
+
+Building the fonts yourself requires [FontForge](https://fontforge.org/) and
+`afm2tfm` (distributed with `dvips`) and can be accomplished by running:
+
+     make fonts
+
+To build the LaTeX package and the documentation and install everything into
 your home texmf tree, run:
 
-    make install
+    l3build install --full
 
-If you want to use a different texmf tree, you can specify it using the
-variable TEXMFDIR:
+Finally, you need to activate the map file `ccicons.map`. If you use TeX Live,
+this can be achieved by the following command:
 
-    make install TEXMFDIR=/usr/local/texlive/texmf-local
-
-Afterwards, make sure to update the file database using `mktexlsr` or
-`texhash` (the command may vary depending on what distribution you use).
-
-Finally, you need to activate the map file `fdsymbol.map`. For TeX Live, this
-can be achieved by the following command:
-
-    updmap-user --enable Map=fdsymbol.map
-
-For installation in a system-wide texmf tree, replace `updmap-user` by
-`updmap-sys`.
+    updmap-user --enable Map=ccicons.map
 
 Make sure you have read https://tug.org/texlive/scripts-sys-user.html before
 invoking `updmap-user`.
 
 ## License
 
-Copyright (C) 2011-2025 by Michael Ummels <michael@ummels.de>
+Copyright (C) 2011-2026 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the

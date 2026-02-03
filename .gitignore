@@ -1,3 +1,5 @@
+build/
+.vscode/
 .DS_Store
 *.bak
 *.old
@@ -15,12 +17,9 @@
 *.tfm
 *.pfb
 *.otf
-*.tmproj
-*.tds.zip
-*.tex
+*.zip
 *.tar.gz
 *.dvi
 *.ps
 *.pdf
 *.map
-!ccicons.pdf

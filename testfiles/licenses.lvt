@@ -1,0 +1,68 @@
+\input{regression-test}
+
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{ccicons}
+
+\begin{document}
+
+\START
+
+\TEST{\ccby} {
+  \test{\ccby}
+}
+
+\TEST{\ccbysa} {
+  \test{\ccbysa}
+}
+
+\TEST{\ccbynd} {
+  \test{\ccbynd}
+}
+
+\TEST{\ccbync} {
+  \test{\ccbync}
+}
+
+\TEST{\ccbynceu} {
+  \test{\ccbynceu}
+}
+
+\TEST{\ccbyncjp} {
+  \test{\ccbyncjp}
+}
+
+\TEST{\ccbyncsa} {
+  \test{\ccbyncsa}
+}
+
+\TEST{\ccbyncsaeu} {
+  \test{\ccbyncsaeu}
+}
+
+\TEST{\ccbyncsajp} {
+  \test{\ccbyncsajp}
+}
+
+\TEST{\ccbyncnd} {
+  \test{\ccbyncnd}
+}
+
+\TEST{\ccbyncndeu} {
+  \test{\ccbyncndeu}
+}
+
+\TEST{\ccbyncndjp} {
+  \test{\ccbyncndjp}
+}
+
+\TEST{\cczero} {
+  \test{\cczero}
+}
+
+\TEST{\ccpd} {
+  \test{\ccpd}
+}
+
+\END
