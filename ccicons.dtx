@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2011-2025 by Michael Ummels <michael@ummels.de>
+% Copyright (C) 2011-2026 by Michael Ummels <michael@ummels.de>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3c
@@ -17,15 +17,13 @@
 % This work consists of the files ccicons.dtx, ccicons.ins
 % and the derived files ccicons.pdf and ccicons.sty.
 %
-% \fi
-%
-% \iffalse
 %<*driver>
 \ProvidesFile{ccicons.dtx}[2017/10/30 v1.6 LaTeX support for Creative Commons icons]
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{ccicons}[2017/10/30 v1.6 LaTeX support for Creative Commons icons]
 %<*driver>
+\pdfmapfile{+ccicons.map}
 \documentclass{ltxdoc}
 
 \usepackage[T1]{fontenc}
@@ -282,68 +280,4 @@
 % OpenType font. \\
 % Version 1.6 (2017/10/30): Incorporated new Public Domain icon
 %
-%
 % \Finale
-% \endinput
-%
-% \iffalse
-%<*test>
-% \fi
-%    \begin{macrocode}
-\documentclass[a4paper]{article}
-
-\usepackage[copyright]{ccicons}
-
-\setlength{\parindent}{0pt}
-\pagestyle{empty}
-
-\begin{document}
-\ccLogo
-\ccAttribution
-\ccShareAlike
-\ccNoDerivatives
-\ccNonCommercial
-\ccNonCommercialJP
-\ccZero
-\ccPublicDomain
-\ccPublicDomainAlt
-\ccSampling
-\ccShare
-\ccRemix
-\ccCopy
-
-\textcopyright
-
-\ccby
-
-\ccbysa
-
-\ccbynd
-
-\ccbync
-
-\ccbynceu
-
-\ccbyncjp
-
-\ccbyncsa
-
-\ccbyncsaeu
-
-\ccbyncsajp
-
-\ccbyncnd
-
-\ccbyncndeu
-
-\ccbyncndjp
-
-\cczero
-
-\ccpd
-\end{document}
-%    \end{macrocode}
-%
-% \iffalse
-%</test>
-% \fi

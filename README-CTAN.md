@@ -19,14 +19,14 @@ the details.
 
 ## Installation
 
-The font and the correspoding LaTeX support package is best installed through
+The font and the corresponding LaTeX support package is best installed through
 the package manager of a TeX distribution such as TeX Live or MiKTeX. If you
 prefer a manual installation, make sure to activate the included map file
 `ccicons.map` after copying all files into a local texmf tree.
 
 ## License
 
-Copyright (C) 2011-2025 by Michael Ummels <michael@ummels.de>
+Copyright (C) 2011-2026 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. FontForge (.sfd), OpenType (.otf),
 TeX font metric (.tfm), and Type 1 (.pfb) files, are licensed under the

@@ -1,0 +1,72 @@
+\input{regression-test}
+
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[copyright]{ccicons}
+
+\begin{document}
+
+\START
+
+\TEST{\ccLogo} {
+  \test{\ccLogo}
+}
+
+\TEST{\ccAttribution} {
+  \test{\ccAttribution}
+}
+
+\TEST{\ccShareAlike} {
+  \test{\ccShareAlike}
+}
+
+\TEST{\ccNoDerivatives} {
+  \test{\ccNoDerivatives}
+}
+
+\TEST{\ccNonCommercial} {
+  \test{\ccNonCommercial}
+}
+
+\TEST{\ccNonCommercialEU} {
+  \test{\ccNonCommercialEU}
+}
+
+\TEST{\ccNonCommercialJP} {
+  \test{\ccNonCommercialJP}
+}
+
+\TEST{\ccZero} {
+  \test{\ccZero}
+}
+
+\TEST{\ccPublicDomain} {
+  \test{\ccPublicDomain}
+}
+
+\TEST{\ccPublicDomainAlt} {
+  \test{\ccPublicDomainAlt}
+}
+
+\TEST{\ccSampling} {
+  \test{\ccSampling}
+}
+
+\TEST{\ccShare} {
+  \test{\ccShare}
+}
+
+\TEST{\ccRemix} {
+  \test{\ccRemix}
+}
+
+\TEST{\ccCopy} {
+  \test{\ccCopy}
+}
+
+\TEST{\textcopyright} {
+  \test{\textcopyright}
+}
+
+\END
