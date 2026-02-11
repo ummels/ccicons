@@ -39,6 +39,7 @@ jobs:
         retention-days: 3
 
   build-docs:
+    needs: check
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
