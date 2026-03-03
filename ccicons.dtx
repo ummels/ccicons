@@ -20,10 +20,12 @@
 %<*driver>
 \ProvidesFile{ccicons.dtx}[2017/10/30 v1.6 LaTeX support for Creative Commons icons]
 %</driver>
-%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<package>\ProvidesPackage{ccicons}[2017/10/30 v1.6 LaTeX support for Creative Commons icons]
+%<package>\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+%<package>\ProvidesExplPackage {ccicons} {2026-03-03} {1.7.0} {LaTeX support for Creative Commons icons}
 %<*driver>
-\pdfmapfile{+ccicons.map}
+\ifdefined\pdfmapfile
+  \pdfmapfile{+ccicons.map}
+\fi
 \documentclass{ltxdoc}
 
 \usepackage[T1]{fontenc}
@@ -155,28 +157,37 @@
 %
 % \iffalse
 %<*package>
+%<@@=ccicons>
 % \fi
 %
-% We use \pkg{xkeyval}'s key mechanism to declare all options.
+% We use |\DeclareKeys| to declare all options.
 % The first option controls whether |\textcopyright| is redefined.
 %    \begin{macrocode}
-\RequirePackage{xkeyval}
-\define@boolkey{ccicons.sty}[ccicons@]{copyright}[true]{}
+\DeclareKeys [ccicons]
+  {
+    copyright.code = \renewcommand{\textcopyright}{\ccCopy},
 %    \end{macrocode}
 % The next option allows to scale the font by an arbitrary factor.
 %    \begin{macrocode}
-\newcommand{\ccicons@scale}{1.0}
-\define@key{ccicons.sty}{scale}{\renewcommand\ccicons@scale{#1}}
+    scale.store    = \l_@@_scale_tl,
+    scale.usage    = preamble,
+    scaled.store   = \l_@@_scale_tl,
+    scaled.usage   = preamble
+  }
 %    \end{macrocode}
-% Process all options.
+% Set default values and process options.
 %    \begin{macrocode}
-\ProcessOptionsX
+\SetKeys [ccicons]
+  {
+    scale = 1.0
+  }
+\ProcessKeyOptions
 %    \end{macrocode}
 % We just declare one font family with one shape.
 %    \begin{macrocode}
 \DeclareFontFamily{U}{ccicons}{}
 \DeclareFontShape{U}{ccicons}{m}{n}{
-   <-> s * [\ccicons@scale] ccicons
+   <-> s * [\l_@@_scale_tl] ccicons
 }{}
 %    \end{macrocode}
 % We provide internal commands to access the characters of the font
@@ -215,10 +226,6 @@
 \newcommand{\ccShare}{{\ccicons@font\ccicons@share}}
 \newcommand{\ccRemix}{{\ccicons@font\ccicons@remix}}
 \newcommand{\ccCopy}{{\ccicons@font\ccicons@copy}}
-%    \end{macrocode}
-% If the copyright option has been set, we redefine |\textcopyright|.
-%    \begin{macrocode}
-\ifccicons@copyright\renewcommand{\textcopyright}{\ccCopy}\fi
 %    \end{macrocode}
 % Finally, for each CC license we define a command that prints the CC logo
 % together with the icons applicable for that license.
@@ -279,5 +286,6 @@
 % Version 1.5 (2013/04/16): Relicensed font components and included
 % OpenType font. \\
 % Version 1.6 (2017/10/30): Incorporated new Public Domain icon
+% Version 1.7.0 (2026/03/30): Reimplementation in \LaTeX3
 %
 % \Finale

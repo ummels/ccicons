@@ -1,0 +1,14 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+TEST 1: \textcopyright 
+============================================================
+LaTeX Font Info:    Font shape `U/ccicons/m/n' will be
+(Font)              scaled to size 10.0pt on input line ....
+> \box...=
+\hbox(6.99998+1.99998)x8.99998
+.\U/ccicons/m/n/10 ^^L
+! OK.
+<argument> \l_tmpa_box 
+l. ...}
+============================================================

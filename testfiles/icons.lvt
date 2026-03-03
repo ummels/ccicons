@@ -3,9 +3,13 @@
 \documentclass{article}
 
 \usepackage[T1]{fontenc}
-\usepackage[copyright]{ccicons}
+\usepackage{lmodern}
+\usepackage{ccicons}
 
 \begin{document}
+
+% Initialize TS1 encoding
+\textdagger
 
 \START
 
