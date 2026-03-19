@@ -3,6 +3,7 @@
 \documentclass{article}
 
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[copyright]{ccicons}
 
 \begin{document}
@@ -10,63 +11,63 @@
 \START
 
 \TEST{\ccLogo} {
-  \test{\ccLogo}
+  \test{1\ccLogo 2}
 }
 
 \TEST{\ccAttribution} {
-  \test{\ccAttribution}
+  \test{1\ccAttribution 2}
 }
 
 \TEST{\ccShareAlike} {
-  \test{\ccShareAlike}
+  \test{1 \ccShareAlike 2}
 }
 
 \TEST{\ccNoDerivatives} {
-  \test{\ccNoDerivatives}
+  \test{1\ccNoDerivatives 2}
 }
 
 \TEST{\ccNonCommercial} {
-  \test{\ccNonCommercial}
+  \test{1\ccNonCommercial 2}
 }
 
 \TEST{\ccNonCommercialEU} {
-  \test{\ccNonCommercialEU}
+  \test{1\ccNonCommercialEU 2}
 }
 
 \TEST{\ccNonCommercialJP} {
-  \test{\ccNonCommercialJP}
+  \test{1\ccNonCommercialJP 2}
 }
 
 \TEST{\ccZero} {
-  \test{\ccZero}
+  \test{1\ccZero 2}
 }
 
 \TEST{\ccPublicDomain} {
-  \test{\ccPublicDomain}
+  \test{1\ccPublicDomain 2}
 }
 
 \TEST{\ccPublicDomainAlt} {
-  \test{\ccPublicDomainAlt}
+  \test{1\ccPublicDomainAlt 2}
 }
 
 \TEST{\ccSampling} {
-  \test{\ccSampling}
+  \test{1\ccSampling 2}
 }
 
 \TEST{\ccShare} {
-  \test{\ccShare}
+  \test{1\ccShare 2}
 }
 
 \TEST{\ccRemix} {
-  \test{\ccRemix}
+  \test{1\ccRemix 2}
 }
 
 \TEST{\ccCopy} {
-  \test{\ccCopy}
+  \test{1\ccCopy 2}
 }
 
 \TEST{\textcopyright} {
-  \test{\textcopyright}
+  \test{1\textcopyright 2}
 }
 
 \END
