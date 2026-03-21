@@ -1,0 +1,16 @@
+\input{regression-test}
+
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[scale=1.5]{ccicons}
+
+\begin{document}
+
+\START
+
+\TEST{\ccLogo} {
+  \test{\ccLogo}
+}
+
+\END
