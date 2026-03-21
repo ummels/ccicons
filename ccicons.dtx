@@ -20,10 +20,12 @@
 %<*driver>
 \ProvidesFile{ccicons.dtx}[2017/10/30 v1.6 LaTeX support for Creative Commons icons]
 %</driver>
-%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<package>\ProvidesPackage{ccicons}[2017/10/30 v1.6 LaTeX support for Creative Commons icons]
+%<package>\NeedsTeXFormat{LaTeX2e}[2022-06-01]
+%<package>\ProvidesExplPackage {ccicons} {2026-03-03} {1.7.0} {LaTeX support for Creative Commons icons}
 %<*driver>
-\pdfmapfile{+ccicons.map}
+\ifdefined\pdfmapfile
+  \pdfmapfile{+ccicons.map}
+\fi
 \documentclass{ltxdoc}
 
 \usepackage[T1]{fontenc}
@@ -155,102 +157,225 @@
 %
 % \iffalse
 %<*package>
+%<@@=ccicons>
 % \fi
 %
-% We use \pkg{xkeyval}'s key mechanism to declare all options.
+% We use |\DeclareKeys| to declare all options.
 % The first option controls whether |\textcopyright| is redefined.
 %    \begin{macrocode}
-\RequirePackage{xkeyval}
-\define@boolkey{ccicons.sty}[ccicons@]{copyright}[true]{}
+\DeclareKeys [ccicons]
+  {
+    copyright.code = {\renewcommand{\textcopyright}{\ccCopy}},
 %    \end{macrocode}
 % The next option allows to scale the font by an arbitrary factor.
 %    \begin{macrocode}
-\newcommand{\ccicons@scale}{1.0}
-\define@key{ccicons.sty}{scale}{\renewcommand\ccicons@scale{#1}}
+    scale.store    = \l_@@_scale_tl,
+    scale.usage    = preamble,
+    scaled.store   = \l_@@_scale_tl,
+    scaled.usage   = preamble
+  }
 %    \end{macrocode}
-% Process all options.
+% Set default values and process options.
 %    \begin{macrocode}
-\ProcessOptionsX
+\SetKeys [ccicons]
+  {
+    scale = 1.0
+  }
+\DeclareUnknownKeyHandler [ccicons]
+  {
+    \PackageWarning {ccicons} { Unknown~option~#1 }
+  }
+\ProcessKeyOptions
 %    \end{macrocode}
 % We just declare one font family with one shape.
 %    \begin{macrocode}
-\DeclareFontFamily{U}{ccicons}{}
-\DeclareFontShape{U}{ccicons}{m}{n}{
-   <-> s * [\ccicons@scale] ccicons
-}{}
+\DeclareFontFamily {U} {ccicons} {}
+\DeclareFontShape {U} {ccicons} {m} {n}
+  {
+    <-> s * [\l_@@_scale_tl] ccicons
+  }
+  {}
 %    \end{macrocode}
 % We provide internal commands to access the characters of the font
 % directly.
 %    \begin{macrocode}
-\newcommand{\ccicons@font}{\usefont{U}{ccicons}{m}{n}}
-\newcommand{\ccicons@logo}{\char0}
-\newcommand{\ccicons@by}{\char1}
-\newcommand{\ccicons@sa}{\char2}
-\newcommand{\ccicons@nd}{\char3}
-\newcommand{\ccicons@nc}{\char4}
-\newcommand{\ccicons@nceu}{\char5}
-\newcommand{\ccicons@ncjp}{\char6}
-\newcommand{\ccicons@pd}{\char7}
-\newcommand{\ccicons@zero}{\char8}
-\newcommand{\ccicons@sampling}{\char9}
-\newcommand{\ccicons@share}{\char10}
-\newcommand{\ccicons@remix}{\char11}
-\newcommand{\ccicons@copy}{\char12}
-\newcommand{\ccicons@pdalt}{\char13}
+\cs_new:Nn \@@_font: { \usefont{U}{ccicons}{m}{n} }
+\cs_new:Nn \@@_logo: { \char0 }
+\cs_new:Nn \@@_by: { \char1 }
+\cs_new:Nn \@@_sa: { \char2 }
+\cs_new:Nn \@@_nd: { \char3 }
+\cs_new:Nn \@@_nc: { \char4 }
+\cs_new:Nn \@@_nc_eu: { \char5 }
+\cs_new:Nn \@@_nc_jp: { \char6 }
+\cs_new:Nn \@@_pd: { \char7 }
+\cs_new:Nn \@@_zero: { \char8 }
+\cs_new:Nn \@@_sampling: { \char9 }
+\cs_new:Nn \@@_share: { \char10 }
+\cs_new:Nn \@@_remix: { \char11 }
+\cs_new:Nn \@@_copy: { \char12 }
+\cs_new:Nn \@@_pd_alt: { \char13 }
 %    \end{macrocode}
 % The following commands provide high-level access to to the font. We
 % define a command for each character in the font.
 %    \begin{macrocode}
-\newcommand{\ccLogo}{{\ccicons@font\ccicons@logo}}
-\newcommand{\ccAttribution}{{\ccicons@font\ccicons@by}}
-\newcommand{\ccShareAlike}{{\ccicons@font\ccicons@sa}}
-\newcommand{\ccNoDerivatives}{{\ccicons@font\ccicons@nd}}
-\newcommand{\ccNonCommercial}{{\ccicons@font\ccicons@nc}}
-\newcommand{\ccNonCommercialEU}{{\ccicons@font\ccicons@nceu}}
-\newcommand{\ccNonCommercialJP}{{\ccicons@font\ccicons@ncjp}}
-\newcommand{\ccPublicDomain}{{\ccicons@font\ccicons@pd}}
-\newcommand{\ccPublicDomainAlt}{{\ccicons@font\ccicons@pdalt}}
-\newcommand{\ccZero}{{\ccicons@font\ccicons@zero}}
-\newcommand{\ccSampling}{{\ccicons@font\ccicons@sampling}}
-\newcommand{\ccShare}{{\ccicons@font\ccicons@share}}
-\newcommand{\ccRemix}{{\ccicons@font\ccicons@remix}}
-\newcommand{\ccCopy}{{\ccicons@font\ccicons@copy}}
-%    \end{macrocode}
-% If the copyright option has been set, we redefine |\textcopyright|.
-%    \begin{macrocode}
-\ifccicons@copyright\renewcommand{\textcopyright}{\ccCopy}\fi
+\cs_new:Npn \ccLogo
+  {
+    \group_begin:
+    \@@_font:
+    \@@_logo:
+    \group_end:
+  }
+\cs_new:Npn \ccAttribution
+  {
+    \group_begin:
+    \@@_font:
+    \@@_by:
+    \group_end:
+  }
+\cs_new:Npn \ccShareAlike
+  {
+    \group_begin:
+    \@@_font:
+    \@@_sa:
+    \group_end:
+  }
+\cs_new:Npn \ccNoDerivatives
+  {
+    \group_begin:
+    \@@_font:
+    \@@_nd:
+    \group_end:
+  }
+\cs_new:Npn \ccNonCommercial
+  {
+    \group_begin:
+    \@@_font:
+    \@@_nc:
+    \group_end:
+  }
+\cs_new:Npn \ccNonCommercialEU
+  {
+    \group_begin:
+    \@@_font:
+    \@@_nc_eu:
+    \group_end:
+  }
+\cs_new:Npn \ccNonCommercialJP
+  {
+    \group_begin:
+    \@@_font:
+    \@@_nc_jp:
+    \group_end:
+  }
+\cs_new:Npn \ccPublicDomain
+  {
+    \group_begin:
+    \@@_font:
+    \@@_pd:
+    \group_end:
+  }
+\cs_new:Npn \ccPublicDomainAlt
+  {
+    \group_begin:
+    \@@_font:
+    \@@_pd_alt:
+    \group_end:
+  }
+\cs_new:Npn \ccZero
+  {
+    \group_begin:
+    \@@_font:
+    \@@_zero:
+    \group_end:
+  }
+\cs_new:Npn \ccSampling
+  {
+    \group_begin:
+    \@@_font:
+    \@@_sampling:
+    \group_end:
+  }
+\cs_new:Npn \ccShare
+  {
+    \group_begin:
+    \@@_font:
+    \@@_share:
+    \group_end:
+  }
+\cs_new:Npn \ccRemix
+  {
+    \group_begin:
+    \@@_font:
+    \@@_remix:
+    \group_end:
+  }
+\cs_new:Npn \ccCopy
+  {
+    \group_begin:
+    \@@_font:
+    \@@_copy:
+    \group_end:
+  }
 %    \end{macrocode}
 % Finally, for each CC license we define a command that prints the CC logo
 % together with the icons applicable for that license.
 %    \begin{macrocode}
-\newcommand{\ccby}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by}}
-\newcommand{\ccbysa}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@sa}}
-\newcommand{\ccbynd}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nd}}
-\newcommand{\ccbync}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nc}}
-\newcommand{\ccbynceu}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nceu}}
-\newcommand{\ccbyncjp}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@ncjp}}
-\newcommand{\ccbyncsa}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nc\ccicons@sa}}
-\newcommand{\ccbyncsaeu}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nceu\ccicons@sa}}
-\newcommand{\ccbyncsajp}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@ncjp\ccicons@sa}}
-\newcommand{\ccbyncnd}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nc\ccicons@nd}}
-\newcommand{\ccbyncndeu}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@nceu\ccicons@nd}}
-\newcommand{\ccbyncndjp}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@by\ccicons@ncjp\ccicons@nd}}
-\newcommand{\cczero}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@zero}}
-\newcommand{\ccpd}%
-  {\mbox{\ccicons@font\ccicons@logo\ccicons@pd}}
+\cs_new:Npn \ccby
+  {
+    \mbox { \ccLogo \ccAttribution }
+  }
+\cs_new:Npn \ccbysa
+  {
+    \mbox { \ccLogo \ccAttribution \ccShareAlike }
+  }
+\cs_new:Npn \ccbynd
+  {
+    \mbox { \ccLogo \ccAttribution \ccNoDerivatives }
+  }
+\cs_new:Npn \ccbync
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercial }
+  }
+\cs_new:Npn \ccbynceu
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercialEU }
+  }
+\cs_new:Npn \ccbyncjp
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercialJP }
+  }
+\cs_new:Npn \ccbyncsa
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercial \ccShareAlike }
+  }
+\cs_new:Npn \ccbyncsaeu
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercialEU \ccShareAlike }
+  }
+\cs_new:Npn \ccbyncsajp
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercialJP \ccShareAlike }
+  }
+\cs_new:Npn \ccbyncnd
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercial \ccNoDerivatives }
+  }
+\cs_new:Npn \ccbyncndeu
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercialEU \ccNoDerivatives }
+  }
+\cs_new:Npn \ccbyncndjp
+  {
+    \mbox { \ccLogo \ccAttribution \ccNonCommercialJP \ccNoDerivatives }
+  }
+\cs_new:Npn \cczero
+  {
+    \mbox { \ccLogo \ccZero }
+  }
+\cs_new:Npn \ccpd
+  {
+    \mbox { \ccLogo \ccPublicDomain }
+  }
 %    \end{macrocode}
 %
 % \iffalse
@@ -268,5 +393,6 @@
 % Version 1.5 (2013/04/16): Relicensed font components and included
 % OpenType font. \\
 % Version 1.6 (2017/10/30): Incorporated new Public Domain icon
+% Version 1.7.0 (2026/03/30): Reimplementation in \LaTeX3
 %
 % \Finale

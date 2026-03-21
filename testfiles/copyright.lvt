@@ -1,0 +1,17 @@
+\input{regression-test}
+
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[copyright]{ccicons}
+
+\begin{document}
+
+\START
+
+\TEST{\textcopyright} {
+  \test{1\textcopyright 2}
+}
+
+\END
