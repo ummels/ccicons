@@ -1,6 +1,7 @@
 SHELL := /bin/sh
 FONTFORGE := fontforge
-AFMTOTFM := afm2tfm
+AFMTOPL := afm2pl
+PLTOTFM := pltotf
 RM := rm -rf
 
 ifneq (,$(findstring install,$(MAKECMDGOALS)))
@@ -17,7 +18,7 @@ genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf $(pkg).map
 all: fonts
 
 .PHONY: fonts
-fonts: type1 opentype metrics mapfile
+fonts: type1 opentype metrics
 
 # rules for building the Postscript font
 
@@ -38,13 +39,13 @@ $(pkg).otf: $(pkg).sfd
 # rules for building the TeX font metrics and the mapfile
 
 .PHONY: metrics
-metrics: $(pkg).tfm
+metrics: $(pkg).tfm $(pkg).map
 
-.PHONY: mapfile
-mapfile: $(pkg).map
+$(pkg).pl $(pkg).map: $(pkg).afm
+	$(AFMTOPL) $(pkg).afm
 
-$(pkg).tfm $(pkg).map: $(pkg).afm
-	res=$$($(AFMTOTFM) $(pkg).afm) && echo "$$res <$(pkg).pfb" > $(pkg).map
+$(pkg).tfm:
+	$(PLTOTFM) $(pkg).pl
 
 # rule for cleaning the source tree
 

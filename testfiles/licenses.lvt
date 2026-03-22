@@ -3,6 +3,7 @@
 \documentclass{article}
 
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{ccicons}
 
 \begin{document}
@@ -10,59 +11,59 @@
 \START
 
 \TEST{\ccby} {
-  \test{\ccby}
+  \test{1\ccby 2}
 }
 
 \TEST{\ccbysa} {
-  \test{\ccbysa}
+  \test{1\ccbysa 2}
 }
 
 \TEST{\ccbynd} {
-  \test{\ccbynd}
+  \test{1\ccbynd 2}
 }
 
 \TEST{\ccbync} {
-  \test{\ccbync}
+  \test{1\ccbync 2}
 }
 
 \TEST{\ccbynceu} {
-  \test{\ccbynceu}
+  \test{1\ccbynceu 2}
 }
 
 \TEST{\ccbyncjp} {
-  \test{\ccbyncjp}
+  \test{1\ccbyncjp 2}
 }
 
 \TEST{\ccbyncsa} {
-  \test{\ccbyncsa}
+  \test{1\ccbyncsa 2}
 }
 
 \TEST{\ccbyncsaeu} {
-  \test{\ccbyncsaeu}
+  \test{1\ccbyncsaeu 2}
 }
 
 \TEST{\ccbyncsajp} {
-  \test{\ccbyncsajp}
+  \test{1\ccbyncsajp 2}
 }
 
 \TEST{\ccbyncnd} {
-  \test{\ccbyncnd}
+  \test{1\ccbyncnd 2}
 }
 
 \TEST{\ccbyncndeu} {
-  \test{\ccbyncndeu}
+  \test{1\ccbyncndeu 2}
 }
 
 \TEST{\ccbyncndjp} {
-  \test{\ccbyncndjp}
+  \test{1\ccbyncndjp 2}
 }
 
 \TEST{\cczero} {
-  \test{\cczero}
+  \test{1\cczero 2}
 }
 
 \TEST{\ccpd} {
-  \test{\ccpd}
+  \test{1\ccpd 2}
 }
 
 \END

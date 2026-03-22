@@ -14,7 +14,9 @@ build/
 *.sty
 *.fd
 *.afm
+*.pl
 *.tfm
+*.map
 *.pfb
 *.otf
 *.zip
@@ -22,4 +24,3 @@ build/
 *.dvi
 *.ps
 *.pdf
-*.map
