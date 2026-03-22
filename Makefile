@@ -10,7 +10,7 @@ endif
 
 pkg := ccicons
 files := $(pkg)-u.enc $(pkg).sfd OFL.txt FONTLOG.txt
-genfiles := $(pkg).pfb $(pkg).afm $(pkg).tfm $(pkg).otf $(pkg).map
+genfiles := $(pkg).pfb $(pkg).afm $(pkg).pl $(pkg).tfm $(pkg).otf $(pkg).map
 
 # default rule
 
@@ -44,7 +44,7 @@ metrics: $(pkg).tfm $(pkg).map
 $(pkg).pl $(pkg).map: $(pkg).afm
 	$(AFMTOPL) $(pkg).afm
 
-$(pkg).tfm:
+$(pkg).tfm: $(pkg).pl
 	$(PLTOTFM) $(pkg).pl
 
 # rule for cleaning the source tree
