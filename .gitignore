@@ -14,7 +14,7 @@ build/
 *.sty
 *.fd
 *.afm
-*.pl
+*.enc
 *.tfm
 *.map
 *.pfb

@@ -1,16 +1,9 @@
 SHELL := /bin/sh
 FONTFORGE := fontforge
-AFMTOPL := afm2pl
-PLTOTFM := pltotf
 RM := rm -rf
 
-ifneq (,$(findstring install,$(MAKECMDGOALS)))
-TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
-endif
-
-pkg := ccicons
-files := $(pkg)-u.enc $(pkg).sfd OFL.txt FONTLOG.txt
-genfiles := $(pkg).pfb $(pkg).afm $(pkg).pl $(pkg).tfm $(pkg).otf $(pkg).map
+files := ccicons.sfd OFL.txt FONTLOG.txt
+genfiles := ccicons.pfb ccicons.afm ccicons.enc ccicons.tfm ccicons.otf ccicons.map
 
 # default rule
 
@@ -23,29 +16,26 @@ fonts: type1 opentype metrics
 # rules for building the Postscript font
 
 .PHONY: type1
-type1: $(pkg).pfb
+type1: ccicons.pfb
 
-$(pkg).pfb $(pkg).afm: $(pkg).sfd
-	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).pfb"); Quit(0)'
+.PHONY: metrics
+metrics: ccicons.tfm ccicons.map
+
+ccicons.pfb ccicons.afm ccicons.tfm ccicons.enc: ccicons.sfd
+	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("ccicons.pfb", "", 0x10001); Quit(0)'
 
 # rules for building the OpenType font
 
 .PHONY: opentype
-opentype: $(pkg).otf
+opentype: ccicons.otf
 
-$(pkg).otf: $(pkg).sfd
-	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$(pkg).otf"); Quit(0)'
+ccicons.otf: ccicons.sfd
+	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("ccicons.otf"); Quit(0)'
 
 # rules for building the TeX font metrics and the mapfile
 
-.PHONY: metrics
-metrics: $(pkg).tfm $(pkg).map
-
-$(pkg).pl $(pkg).map: $(pkg).afm
-	$(AFMTOPL) $(pkg).afm
-
-$(pkg).tfm: $(pkg).pl
-	$(PLTOTFM) $(pkg).pl
+ccicons.map:
+	echo "ccicons CCIcons <ccicons.pfb" > ccicons.map
 
 # rule for cleaning the source tree
 
