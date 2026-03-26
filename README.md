@@ -24,8 +24,8 @@ the package manager of a TeX distribution such as
 
 ## Build instructions
 
-Building the font yourself requires [FontForge](https://fontforge.org/) and
-`afm2tfm` (distributed with `dvips`) and can be accomplished by running:
+Building the font yourself requires [FontForge](https://fontforge.org/) and can
+be accomplished by running:
 
      make font
 
