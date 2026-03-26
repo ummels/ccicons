@@ -24,10 +24,10 @@ the package manager of a TeX distribution such as
 
 ## Build instructions
 
-Building the fonts yourself requires [FontForge](https://fontforge.org/) and
+Building the font yourself requires [FontForge](https://fontforge.org/) and
 `afm2tfm` (distributed with `dvips`) and can be accomplished by running:
 
-     make fonts
+     make font
 
 To build the LaTeX package and the documentation and install everything into
 your home texmf tree, run:

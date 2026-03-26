@@ -21,7 +21,7 @@ jobs:
       with:
         package_file: .github/tl_packages
     - name: Run make
-      run: make fonts
+      run: make font
     - name: Build
       run: l3build ctan
     - name: Release

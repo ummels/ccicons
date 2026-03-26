@@ -6,10 +6,10 @@ genfiles := ccicons.pfb ccicons.afm ccicons.enc ccicons.tfm ccicons.otf ccicons.
 # Rules
 
 .PHONY: all
-all: fonts
+all: font
 
-.PHONY: fonts
-fonts: $(genfiles)
+.PHONY: font
+font: $(genfiles)
 
 .PHONY: clean
 clean:
@@ -23,7 +23,3 @@ ccicons.map:
 
 ccicons.otf: ccicons.sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("ccicons.otf"); Quit(0)'
-
-# delete files on error
-
-.DELETE_ON_ERROR:
