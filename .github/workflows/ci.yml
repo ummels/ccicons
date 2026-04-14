@@ -59,7 +59,7 @@ jobs:
     - name: Move documentation
       run: mkdir docs && mv *.pdf docs
     - name: Upload documentation
-      uses: actions/upload-pages-artifact@v4
+      uses: actions/upload-pages-artifact@v5
       with:
         path: 'docs'
 
